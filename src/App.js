@@ -1,4 +1,9 @@
 import './App.css';
+import Btn from './components.js';
+
+// function logBeep() {
+//   console.log(logBeep)
+// }
 
 function App() {
   return (
@@ -12,6 +17,9 @@ function App() {
         </h2>
         <div style={{height: 20}}></div>
         <p className="text-sm">insert text here</p>
+        <Btn onClick={() => console.log("boop")}>
+          bonk bonk
+        </Btn>
       </header>
     </div>
   );
