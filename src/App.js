@@ -1,5 +1,5 @@
 import './App.css';
-import {BtnMain, BtnSecondary, H1, H2, H3, P} from './components.js';
+import {BtnMain, BtnSecondary, H1, H2, H3, P, Table, TR1, TR2, TH, TD} from './components.js';
 // function logBeep() {
 //   console.log(logBeep)
 // }
@@ -18,6 +18,33 @@ function App() { // <div style={{height: 20}}></div>
                 <BtnSecondary onClick={() => console.log("boop")}>
                     beep boop
                 </BtnSecondary>
+                <Table>
+                    <TR1>
+                        <TH>Label</TH>
+                        <TH>Category</TH>
+                        <TH>Amount</TH>
+                    </TR1>
+                    <TR1>
+                        <TD>Lunch</TD>
+                        <TD>Food</TD>
+                        <TD>10</TD>
+                    </TR1>
+                    <TR2>
+                        <TD>Games</TD>
+                        <TD>Miscellaneous</TD>
+                        <TD>20</TD>
+                    </TR2>
+                    <TR1>
+                        <TD>Dinner</TD>
+                        <TD>Food</TD>
+                        <TD>12</TD>
+                    </TR1>
+                    <TR2>
+                        <TD>AC</TD>
+                        <TD>Electricity</TD>
+                        <TD>10</TD>
+                    </TR2>
+                </Table> 
             </header>
         </div>
     );
