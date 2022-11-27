@@ -1,5 +1,5 @@
 import './App.css';
-import {BtnMain, BtnSecondary, H1, H2, H3, P, Table, TR1, TR2, TH, TD} from './components.js';
+import {BtnMain, BtnSecondary, H1, H2, H3, P, Table, TR1, TR2, TH, TD, CheckBox, RadioBox} from './components.js';
 // function logBeep() {
 //   console.log(logBeep)
 // }
@@ -45,6 +45,18 @@ function App() { // <div style={{height: 20}}></div>
                         <TD>10</TD>
                     </TR2>
                 </Table> 
+                <CheckBox>
+                    Cool CheckBox
+                </CheckBox>
+                <RadioBox name="beep" value="1">
+                    Radio 1
+                </RadioBox>
+                <RadioBox name="beep">
+                    Radio 2
+                </RadioBox>
+                <RadioBox name="beep">
+                    Radio 3
+                </RadioBox>
             </header>
         </div>
     );

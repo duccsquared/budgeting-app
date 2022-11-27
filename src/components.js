@@ -1,6 +1,19 @@
 import React from 'react';
 import './index.css';
 
+function rInt(a,b) {return Math.floor(Math.random() * (b+1-a)) + a}
+function rChoice(list) {return list[Math.floor(Math.random() * list.length)];}
+
+
+function genRandomID(length=16) {
+    let result = rChoice(["Red","Orange","Yellow","Green","Blue","Purple","White","Grey","Black","Scarlet","Cyan","Magenta","Pink","Indigo","Violet"])
+    result += `-${rInt(10,99)}-`
+    for(let i = 0; i < length; i++) {
+        result += String.fromCharCode(rChoice([rInt(48,57),rInt(65,90),rInt(97,122)]))
+    }
+    return result 
+}
+
 export class BtnMain extends React.Component {
     render() {
         return (
@@ -107,6 +120,38 @@ export class TD extends React.Component {
             <td className="text-sm font-mono border-2 border-zinc-800">
                 {this.props.children}
             </td>
+        )
+    }
+}
+
+export class CheckBox extends React.Component {
+    render() {
+        let id = this.props.id || genRandomID()
+        console.log(id)
+        return (
+            <div className="">
+                <input className="" type="checkbox" value={this.props.value || this.props.children} id={id}></input>
+                <label className="p-1 text-sm font-mono" for={id}>
+                    {this.props.children}
+                </label>
+            </div>
+        )
+    }
+}
+
+
+export class RadioBox extends React.Component {
+    render() {
+        let id = this.props.id || genRandomID()
+        console.log("-----")
+        console.log(this.props.value || this.props.children)
+        return (
+            <div className="">
+                <input className="" type="radio" value={this.props.value || this.props.children} name={this.props.name} id={id}></input>
+                <label className="p-1 text-sm font-mono" for={id}>
+                    {this.props.children}
+                </label>
+            </div>
         )
     }
 }
