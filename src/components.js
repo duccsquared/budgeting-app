@@ -37,7 +37,7 @@ export class BtnSecondary extends React.Component {
 export class H1 extends React.Component {
     render() {
         return (
-            <h1 className="text-6xl font-extrabold font-mono">
+            <h1 className="text-6xl font-extrabold font-mono text-white">
                 {this.props.children}
             </h1>
         )
@@ -47,7 +47,7 @@ export class H1 extends React.Component {
 export class H2 extends React.Component {
     render() {
         return (
-            <h2 className="text-4xl font-bold font-mono">
+            <h2 className="text-4xl font-bold font-mono text-white">
                 {this.props.children}
             </h2>
         )
@@ -57,7 +57,7 @@ export class H2 extends React.Component {
 export class H3 extends React.Component {
     render() {
         return (
-            <h3 className="text-2xl font-semibold font-mono">
+            <h3 className="text-2xl font-semibold font-mono text-white">
                 {this.props.children}
             </h3>
         )
@@ -67,7 +67,7 @@ export class H3 extends React.Component {
 export class P extends React.Component {
     render() {
         return (
-            <p className="text-sm font-mono">
+            <p className="text-sm font-mono text-white">
                 {this.props.children}
             </p>
         )

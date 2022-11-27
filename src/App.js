@@ -1,5 +1,6 @@
 import './App.css';
 import {BtnMain, BtnSecondary, H1, H2, H3, P, Table, TR1, TR2, TH, TD, CheckBox, RadioBox} from './components.js';
+import NavBar from './navbar.js'
 // function logBeep() {
 //   console.log(logBeep)
 // }
@@ -7,8 +8,8 @@ import {BtnMain, BtnSecondary, H1, H2, H3, P, Table, TR1, TR2, TH, TD, CheckBox,
 function App() { // <div style={{height: 20}}></div>
     return (
         <div className="App">
-            <header className="App-header">
-
+            <header>
+                <NavBar></NavBar>
             </header>
             <body className="App-body">
                 <H1>Header 1</H1>
