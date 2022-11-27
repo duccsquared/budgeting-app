@@ -8,6 +8,9 @@ function App() { // <div style={{height: 20}}></div>
     return (
         <div className="App">
             <header className="App-header">
+
+            </header>
+            <body className="App-body">
                 <H1>Header 1</H1>
                 <H2>Header 2</H2>
                 <H3>Header 3</H3>
@@ -57,7 +60,7 @@ function App() { // <div style={{height: 20}}></div>
                 <RadioBox name="beep">
                     Radio 3
                 </RadioBox>
-            </header>
+            </body>
         </div>
     );
 }
