@@ -25,11 +25,11 @@
 .App-body {
   background-color: #27272a; //original: 282c34, currently using zinc 800;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  //display: flex;
+  //flex-direction: column;
+  //align-items: center;
+  //justify-content: center;
+  //font-size: calc(10px + 2vmin);
   color: white;
 }
 .App-link {
