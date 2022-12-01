@@ -84,6 +84,26 @@ export class Table extends React.Component {
     }
 }
 
+export class THead extends React.Component {
+    render() {
+        return (
+            <thead className="">
+                {this.props.children}
+            </thead>
+        )
+    }
+}
+
+export class TBody extends React.Component {
+    render() {
+        return (
+            <tbody className="">
+                {this.props.children}
+            </tbody>
+        )
+    }
+}
+
 export class TR1 extends React.Component {
     render() {
         return (
