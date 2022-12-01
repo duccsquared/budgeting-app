@@ -14,6 +14,26 @@ function genRandomID(length=16) {
     return result 
 }
 
+export class MainSection extends React.Component {
+    render() {
+        return (
+            <div className="bg-zinc-800 min-h-screen text-white text-center">
+                {this.props.children}
+            </div>
+        )
+    }
+}
+
+export class SubSection extends React.Component {
+    render() {
+        return (
+            <div className={"bg-zinc-700 shadow-md " + (this.props.className || "")}>
+                {this.props.children}
+            </div>
+        )
+    } 
+}
+
 export class BtnMain extends React.Component {
     render() {
         return (
@@ -28,6 +48,16 @@ export class BtnSecondary extends React.Component {
     render() {
         return (
             <button onClick={this.props.onClick} className="text-sm font-mono bg-indigo-600 transition duration-100 ease-in-out hover:bg-indigo-500 active:bg-indigo-700 rounded-lg px-2 shadow-lg shadow-indigo-800/50 hover:shadow-indigo-800 active:shadow-inner">
+                {this.props.children}
+            </button>
+        )
+    }
+}
+
+export class BtnMinim extends React.Component {
+    render() {
+        return (
+            <button onClick={this.props.onClick} className="font-mono nav-link block pr-2 lg:px-2 py-2 text-gray-200 hover:text-gray-100 active:text-gray-300 transition duration-100 ease-in-out">
                 {this.props.children}
             </button>
         )

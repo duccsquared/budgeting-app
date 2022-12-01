@@ -1,5 +1,5 @@
 import React from 'react';
-import {H1} from './components.js';
+import {H1, BtnMinim} from './components.js';
 import {useNavigate} from "react-router-dom"
 
 export default function NavBar() {
@@ -11,16 +11,16 @@ export default function NavBar() {
             <div className="flex-grow"></div>
             <ul className="navbar-nav mr-auto lg:flex lg:flex-row">
                 <li className="nav-item">
-                    <button className="nav-link block pr-2 lg:px-2 py-2 text-gray-200 hover:text-gray-100 active:text-gray-300 transition duration-100 ease-in-out" onClick={() => navigate("/graphDisplay")} data-mdb-ripple="true" data-mdb-ripple-color="light">Trends</button>
+                    <BtnMinim onClick={() => navigate("/graphDisplay")}>Trends</BtnMinim>
                 </li>
                 <li className="nav-item">
-                    <button className="nav-link block pr-2 lg:px-2 py-2 text-gray-200 hover:text-gray-100 active:text-gray-300 transition duration-100 ease-in-out" onClick={() => navigate("/tableDisplay")} data-mdb-ripple="true" data-mdb-ripple-color="light">Data Table</button>
+                    <BtnMinim onClick={() => navigate("/tableDisplay")}>Data Table</BtnMinim>
                 </li>
                 <li className="nav-item">
-                    <button className="nav-link block pr-2 lg:px-2 py-2 text-gray-200 hover:text-gray-100 active:text-gray-300 transition duration-100 ease-in-out" onClick={() => navigate("/chartDisplay")} data-mdb-ripple="true" data-mdb-ripple-color="light">Month Overview</button>
+                    <BtnMinim onClick={() => navigate("/chartDisplay")}>Month Overview</BtnMinim>
                 </li>
                 <li className="nav-item mb-2 lg:mb-0">
-                    <button className="nav-link block pr-2 lg:px-2 py-2 text-gray-200 hover:text-gray-100 active:text-gray-300 transition duration-100 ease-in-out" onClick={() => navigate("/")} data-mdb-ripple="true" data-mdb-ripple-color="light">Log Out</button>
+                    <BtnMinim onClick={() => navigate("/")}>Log Out</BtnMinim>
                 </li>
             </ul>
         </div>

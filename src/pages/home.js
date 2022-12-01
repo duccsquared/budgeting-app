@@ -1,11 +1,11 @@
-import {BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox} from '../components.js';
+import {MainSection, SubSection, BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox} from '../components.js';
 
 function HomePage() { // <div style={{height: 20}}></div>
     return (
-        <div className="bg-zinc-800 min-h-screen text-white text-center">
+        <MainSection>
             <div className="grid grid-cols-4 gap-4">
                 <div className="col-span-4"></div>
-                <div className="bg-zinc-700 col-span-2 row-span-3 flex shadow-md">
+                <SubSection className="col-span-2 row-span-3 flex">
                     <div className="grow"></div>
                     <div>
                     <Table>
@@ -42,16 +42,14 @@ function HomePage() { // <div style={{height: 20}}></div>
                     </Table> 
                     </div>
                     <div className="grow"></div>
-                </div>
-                <div className="bg-zinc-700 shadow-md">
+                </SubSection>
+                <SubSection>
                     <H1>Header 1</H1>
                     <H2>Header 2</H2>
                     <H3>Header 3</H3>
                     <P>paragraph</P>
-
-
-                </div>
-                <div className="bg-zinc-700 shadow-md">
+                </SubSection>
+                <SubSection>
                     <CheckBox>
                         Cool CheckBox
                     </CheckBox>
@@ -64,19 +62,19 @@ function HomePage() { // <div style={{height: 20}}></div>
                     <RadioBox name="beep">
                         Radio 3
                     </RadioBox>
-                </div>
-                <div className="bg-zinc-700 col-span-2 shadow-md">
+                </SubSection>
+                <SubSection className="col-span-2">
                     <BtnMain onClick={() => console.log("beep")}>
                         bonk bonk
                     </BtnMain>
-                </div>
-                <div className="bg-zinc-700 col-span-2 shadow-md">
+                </SubSection>
+                <SubSection className="col-span-2">
                     <BtnSecondary onClick={() => console.log("boop")}>
                         beep boop
                     </BtnSecondary>
-                </div>
+                </SubSection>
             </div>
-        </div>
+        </MainSection>
     );
 }
 
