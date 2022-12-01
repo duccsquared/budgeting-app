@@ -5,7 +5,7 @@ function HomePage() { // <div style={{height: 20}}></div>
         <div className="bg-zinc-800 min-h-screen text-white text-center">
             <div className="grid grid-cols-4 gap-4">
                 <div className="col-span-4"></div>
-                <div className="bg-zinc-700 col-span-2 row-span-3 flex shadow-md" justify-center>
+                <div className="bg-zinc-700 col-span-2 row-span-3 flex shadow-md">
                     <div className="grow"></div>
                     <div>
                     <Table>
@@ -41,9 +41,9 @@ function HomePage() { // <div style={{height: 20}}></div>
 
                     </Table> 
                     </div>
-                    <div class="grow"></div>
+                    <div className="grow"></div>
                 </div>
-                <div class="bg-zinc-700 shadow-md">
+                <div className="bg-zinc-700 shadow-md">
                     <H1>Header 1</H1>
                     <H2>Header 2</H2>
                     <H3>Header 3</H3>
@@ -51,7 +51,7 @@ function HomePage() { // <div style={{height: 20}}></div>
 
 
                 </div>
-                <div class="bg-zinc-700 shadow-md">
+                <div className="bg-zinc-700 shadow-md">
                     <CheckBox>
                         Cool CheckBox
                     </CheckBox>

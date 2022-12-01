@@ -151,7 +151,7 @@ export class CheckBox extends React.Component {
         return (
             <div className="">
                 <input className="" type="checkbox" value={this.props.value || this.props.children} id={id}></input>
-                <label className="p-1 text-sm font-mono" for={id}>
+                <label className="p-1 text-sm font-mono" htmlFor={id}>
                     {this.props.children}
                 </label>
             </div>
@@ -168,7 +168,7 @@ export class RadioBox extends React.Component {
         return (
             <div className="">
                 <input className="" type="radio" value={this.props.value || this.props.children} name={this.props.name} id={id}></input>
-                <label className="p-1 text-sm font-mono" for={id}>
+                <label className="p-1 text-sm font-mono" htmlFor={id}>
                     {this.props.children}
                 </label>
             </div>
