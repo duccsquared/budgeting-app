@@ -4,24 +4,44 @@ import HomePage from './pages/home.js'
 import ChartDisplay from './pages/chartDisplay.js'
 import GraphDisplay from './pages/graphDisplay.js'
 import TableDisplay from './pages/tableDisplay.js'
+import Transaction from './data/transaction.js'
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import React from 'react';
 // function logBeep() {
 //   console.log(logBeep)
 // }
 
-function App() { // <div style={{height: 20}}></div>
-    return (
-        <Router>
-            <NavBar></NavBar>
-            <Routes>
-                <Route path="/" element={<HomePage></HomePage>}></Route>
-                <Route path="/chartDisplay" element={<ChartDisplay></ChartDisplay>}></Route>
-                <Route path="/graphDisplay" element={<GraphDisplay></GraphDisplay>}></Route>
-                <Route path="/tableDisplay" element={<TableDisplay></TableDisplay>}></Route>
-            </Routes>
-        </Router>
-    );
+class App extends React.Component { // <div style={{height: 20}}></div>
+    constructor(props) {
+        super(props)
+        this.state = {
+                transactionList: []
+        }
+        this.addEntry("22/11/2022","Lunch",5,"Food","Chicken rice at uni")
+        this.addEntry("23/11/2022","Steam",10,"Games")
+        console.log(this.state.transactionList)
+    }
+    addEntry(date="5/5/2020",label="default",amount=0,category="none",description="") {
+        this.state.transactionList.push(new Transaction(date,label,amount,category,description))
+    }
+    componentDidMount() {
+
+    }
+    render() {
+
+        return (
+            <Router>
+                <NavBar></NavBar>
+                <Routes>
+                    <Route path="/" element={<HomePage></HomePage>}></Route>
+                    <Route path="/chartDisplay" element={<ChartDisplay></ChartDisplay>}></Route>
+                    <Route path="/graphDisplay" element={<GraphDisplay></GraphDisplay>}></Route>
+                    <Route path="/tableDisplay" element={<TableDisplay transactionList={this.state.transactionList}></TableDisplay>}></Route>
+                </Routes>
+            </Router>
+        );
+    }
 }
 
 export default App;
