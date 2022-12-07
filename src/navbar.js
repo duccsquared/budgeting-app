@@ -22,6 +22,9 @@ export default function NavBar() {
                 <li className="nav-item mb-2 lg:mb-0">
                     <BtnMinim onClick={() => navigate("/")}>Log Out</BtnMinim>
                 </li>
+                <li className="nav-item mb-2 lg:mb-0">
+                    <BtnMinim onClick={() => navigate("/addTransaction")}>+</BtnMinim>
+                </li>
             </ul>
         </div>
     </nav>

@@ -5,6 +5,7 @@ import ChartDisplay from './pages/chartDisplay.js'
 import GraphDisplay from './pages/graphDisplay.js'
 import TableDisplay from './pages/tableDisplay.js'
 import Transaction from './data/transaction.js'
+import AddTransaction from './pages/addTransaction.js'
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import React from 'react';
@@ -48,6 +49,7 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                     <Route path="/chartDisplay" element={<ChartDisplay></ChartDisplay>}></Route>
                     <Route path="/graphDisplay" element={<GraphDisplay></GraphDisplay>}></Route>
                     <Route path="/tableDisplay" element={<TableDisplay transactionList={this.state.transactionList} removeEntry={(index) => this.removeEntry(index)}></TableDisplay>}></Route>
+                    <Route path="/addTransaction" element={<AddTransaction></AddTransaction>}></Route>
                 </Routes>
             </Router>
         );
