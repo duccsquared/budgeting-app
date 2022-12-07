@@ -47,7 +47,7 @@ class TransactionTable extends React.Component {
                 </THead>
                 <TBody>
                     {
-                    transactionList.map((transaction,index) => <TransactionRow transaction={transaction} index={index} />)
+                    transactionList.map((transaction,index) => <TransactionRow transaction={transaction} index={index} removeEntry={(index) => this.props.removeEntry(index)}/>)
                     }
                 </TBody>
             </Table> 
@@ -64,7 +64,7 @@ class TransactionRow extends React.Component {
                <TD>{this.props.transaction.amount}</TD>
                <TD>{this.props.transaction.category}</TD>
                <TD>{this.props.transaction.description}</TD>
-               <TD><BtnMain>X</BtnMain></TD>
+               <TD><BtnMain onClick={() => this.props.removeEntry(this.props.index)}>X</BtnMain></TD>
            </TR>
            )
     }

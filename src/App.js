@@ -24,7 +24,16 @@ class App extends React.Component { // <div style={{height: 20}}></div>
         this.addEntry("24/11/2022","Laundry Card",50,"Laundry","Refilled card")
     }
     addEntry(date="5/5/2020",label="default",amount=0,category="none",description="") {
-        this.state.transactionList.push(new Transaction(date,label,amount,category,description))
+        this.setState({
+            transactionList: this.state.transactionList.push(new Transaction(date,label,amount,category,description))
+        })
+        
+    }
+    removeEntry(index) {
+        this.state.transactionList.splice(index,1)
+        this.setState({
+            transactionList: this.state.transactionList
+        })
     }
     componentDidMount() {
 
@@ -38,7 +47,7 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                     <Route path="/" element={<HomePage></HomePage>}></Route>
                     <Route path="/chartDisplay" element={<ChartDisplay></ChartDisplay>}></Route>
                     <Route path="/graphDisplay" element={<GraphDisplay></GraphDisplay>}></Route>
-                    <Route path="/tableDisplay" element={<TableDisplay transactionList={this.state.transactionList}></TableDisplay>}></Route>
+                    <Route path="/tableDisplay" element={<TableDisplay transactionList={this.state.transactionList} removeEntry={(index) => this.removeEntry(index)}></TableDisplay>}></Route>
                 </Routes>
             </Router>
         );
