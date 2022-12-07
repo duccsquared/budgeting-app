@@ -47,11 +47,35 @@ class TransactionTable extends React.Component {
                 </THead>
                 <TBody>
                     {
-                    transactionList.map((transaction,index) => this.getRowHTML(transaction,index))
+                    transactionList.map((transaction,index) => <TransactionRow transaction={transaction} index={index} />)
                     }
                 </TBody>
             </Table> 
         )
+    }
+}
+
+class TransactionRow extends React.Component {
+    render() {
+        return (
+            <TR index={this.props.index}>
+               <TD>{this.props.transaction.date}</TD>
+               <TD>{this.props.transaction.label}</TD>
+               <TD>{this.props.transaction.amount}</TD>
+               <TD>{this.props.transaction.category}</TD>
+               <TD>{this.props.transaction.description}</TD>
+               <TD><BtnMain>X</BtnMain></TD>
+           </TR>
+           )
+    }
+}
+
+function TR(props) {
+    if(props.index%2===0) {
+        return <TR1>{props.children}</TR1>
+    }
+    else {
+        return <TR2>{props.children}</TR2>
     }
 }
 
