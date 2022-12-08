@@ -206,7 +206,7 @@ export class RadioBox extends React.Component {
 export class Input extends React.Component {
     render() {
         return (
-            <input className="text-black text-sm font-mono"/>
+            <input onChange={this.props.onChange} className="text-black text-sm font-mono"/>
         )
     }
 }
@@ -214,7 +214,7 @@ export class Input extends React.Component {
 export class TextArea extends React.Component {
     render() {
         return (
-            <textarea className="text-black text-sm font-mono w-11/12" rows={4}/>
+            <textarea onChange={this.props.onChange} className="text-black text-sm font-mono w-11/12" rows={4}/>
         )
     }
 }
