@@ -1,5 +1,5 @@
 import React from 'react';
-import {MainSection, BtnMain, BtnSecondary, BtnMinim, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection, Input, TextArea} from '../components.js';
+import {MainSection, BtnMain, BtnSecondary, BtnMinim, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection, Input, TextArea, InputDate} from '../components.js';
 
 class AddTransaction extends React.Component {
     constructor(props) {
@@ -15,7 +15,7 @@ class AddTransaction extends React.Component {
     }
 
     onConfirm() {
-        this.props.addEntry(this.state.label,this.state.date,this.state.amount,this.state.category,this.state.description)
+        this.props.addEntry(this.state.date,this.state.label,this.state.amount,this.state.category,this.state.description)
     }
 
     render() {
@@ -35,7 +35,7 @@ class AddTransaction extends React.Component {
                         <div className="inline-flex">
                             <P>date:</P>
                             <div className="w-2"/>
-                            <Input onChange={(e) => this.setState({date: e.target.value})}/>
+                            <InputDate onChange={(e) => this.setState({date: e.target.value})}/>
                         </div>
                         <div className="h-4"/>
                         <div className="inline-flex">

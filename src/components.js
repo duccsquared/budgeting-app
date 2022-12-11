@@ -211,6 +211,14 @@ export class Input extends React.Component {
     }
 }
 
+export class InputDate extends React.Component {
+    render() {
+        return (
+            <input type="date" onChange={this.props.onChange} className="text-black text-sm font-mono"/>
+        )
+    }
+}
+
 export class TextArea extends React.Component {
     render() {
         return (
