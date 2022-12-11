@@ -17,7 +17,9 @@ class App extends React.Component { // <div style={{height: 20}}></div>
     constructor(props) {
         super(props)
         this.state = {
-                transactionList: []
+                transactionList: [],
+                categoryList: ["food","groceries","furniture","electricity"],
+                accountList: ["cash","bank"]
         }
         this.addEntry("22/11/2022","Lunch",5,"Food","Chicken rice at uni")
         this.addEntry("23/11/2022","Steam",10,"Games")
@@ -36,6 +38,18 @@ class App extends React.Component { // <div style={{height: 20}}></div>
             transactionList: this.state.transactionList
         })
     }
+    addCategory(category) {
+        this.state.categoryList.push(category)
+        this.setState({
+            categoryList: this.state.categoryList
+        })
+    }
+    removeCategory(index) {
+        this.state.categoryList.splice(index,1)
+        this.setState({
+            categoryList: this.state.categoryList
+        })
+    }
     componentDidMount() {
 
     }
@@ -48,8 +62,16 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                     <Route path="/" element={<HomePage></HomePage>}></Route>
                     <Route path="/chartDisplay" element={<ChartDisplay></ChartDisplay>}></Route>
                     <Route path="/graphDisplay" element={<GraphDisplay></GraphDisplay>}></Route>
-                    <Route path="/tableDisplay" element={<TableDisplay transactionList={this.state.transactionList} removeEntry={(index) => this.removeEntry(index)}></TableDisplay>}></Route>
-                    <Route path="/addTransaction" element={<AddTransaction transactionList={this.state.transactionList} addEntry={(date,label,amount,category,description) => this.addEntry(date,label,amount,category,description)}></AddTransaction>}></Route>
+                    <Route path="/tableDisplay" element={<TableDisplay 
+                        transactionList={this.state.transactionList} 
+                        removeEntry={(index) => this.removeEntry(index)} 
+                        categoryList={this.state.categoryList}  
+                        accountList={this.state.accountList}>      
+                    </TableDisplay>}></Route>
+                    <Route path="/addTransaction" element={<AddTransaction 
+                        transactionList={this.state.transactionList} 
+                        addEntry={(date,label,amount,category,description) => this.addEntry(date,label,amount,category,description)}>
+                    </AddTransaction>}></Route>
                 </Routes>
             </Router>
         );

@@ -1,4 +1,5 @@
-import {MainSection, BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection} from '../components.js';
+import React from 'react';
+import {MainSection, BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection, BtnMinim} from '../components.js';
 import TransactionTable from '../transactionTable.js';
 
 function TableDisplay(props) {
@@ -28,15 +29,22 @@ function TableDisplay(props) {
                     <RadioBox name="clustering" value="day">cluster by day</RadioBox>
                     <RadioBox name="clustering" value="month">cluster by month</RadioBox>
                 </SubSection>
-                <SubSection>
-                    <P>categories</P>
-                    <CheckBox value="">food</CheckBox>
-                    <CheckBox value="">groceries</CheckBox>
-                    <CheckBox value="">furniture</CheckBox>
-                </SubSection>
+                <CategorySection categoryList={props.categoryList}/>
             </div>
         </MainSection>
     )
+}
+
+class CategorySection extends React.Component {
+    render() {
+        let categoryList = this.props.categoryList
+        return (
+            <SubSection>
+                <P>categories</P>
+                {categoryList.map((category) => <CheckBox value="">{category}</CheckBox>)}
+            </SubSection>
+        )
+    }
 }
 
 export default TableDisplay
