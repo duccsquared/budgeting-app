@@ -17,12 +17,7 @@ function TableDisplay(props) {
                     <RadioBox name="dataType" value="in">inflow</RadioBox>
                     <RadioBox name="dataType" value="out">outflow</RadioBox>
                 </SubSection>
-                <SubSection>    
-                    <P>accounts</P>
-                    <CheckBox value="">cash</CheckBox>
-                    <CheckBox value="">bank</CheckBox>
-                    <CheckBox value="">steam</CheckBox>
-                </SubSection>
+                <AccountSection accountList={props.accountList}/>
                 <SubSection>
                     <P>clustering</P>
                     <RadioBox name="clustering" value="sep">separate entities</RadioBox>
@@ -42,6 +37,18 @@ class CategorySection extends React.Component {
             <SubSection>
                 <P>categories</P>
                 {categoryList.map((category) => <CheckBox value="">{category}</CheckBox>)}
+            </SubSection>
+        )
+    }
+}
+
+class AccountSection extends React.Component {
+    render() {
+        let accountList = this.props.accountList
+        return (
+            <SubSection>
+                <P>accounts</P>
+                {accountList.map((account) => <CheckBox value="">{account}</CheckBox>)}
             </SubSection>
         )
     }

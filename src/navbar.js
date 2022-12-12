@@ -20,11 +20,15 @@ export default function NavBar() {
                     <BtnMinim onClick={() => navigate("/chartDisplay")}>Month Overview</BtnMinim>
                 </li>
                 <li className="nav-item mb-2 lg:mb-0">
-                    <BtnMinim onClick={() => navigate("/")}>Log Out</BtnMinim>
+                    <BtnMinim onClick={() => navigate("/addTransaction")}>Add Entry</BtnMinim>
                 </li>
                 <li className="nav-item mb-2 lg:mb-0">
-                    <BtnMinim onClick={() => navigate("/addTransaction")}>+</BtnMinim>
+                    <BtnMinim onClick={() => navigate("/categoryAccount")}>Modify Categories or Accounts</BtnMinim>
                 </li>
+                <li className="nav-item mb-2 lg:mb-0">
+                    <BtnMinim onClick={() => navigate("/")}>Log Out</BtnMinim>
+                </li>
+
             </ul>
         </div>
     </nav>

@@ -6,6 +6,7 @@ import GraphDisplay from './pages/graphDisplay.js'
 import TableDisplay from './pages/tableDisplay.js'
 import Transaction from './data/transaction.js'
 import AddTransaction from './pages/addTransaction.js'
+import CategoryAccount from './pages/categoryAccount.js';
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import React from 'react';
@@ -50,6 +51,18 @@ class App extends React.Component { // <div style={{height: 20}}></div>
             categoryList: this.state.categoryList
         })
     }
+    addAccount(account) {
+        this.state.accountList.push(account)
+        this.setState({
+            accountList: this.state.accountList
+        })
+    }
+    removeAccount(index) {
+        this.state.accountList.splice(index,1)
+        this.setState({
+            accountList: this.state.accountList
+        })
+    }
     componentDidMount() {
 
     }
@@ -72,6 +85,15 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                         transactionList={this.state.transactionList} 
                         addEntry={(date,label,amount,category,description) => this.addEntry(date,label,amount,category,description)}>
                     </AddTransaction>}></Route>
+                    <Route path="/categoryAccount" element={<CategoryAccount
+                        categoryList={this.state.categoryList}  
+                        accountList={this.state.accountList}
+                        addCategory={(category) => this.addCategory(category)}
+                        removeCategory={(index) => this.removeCategory(index)}
+                        addAccount={(account) => this.addAccount(account)}
+                        removeAccount={(index) => this.removeAccount(index)}
+                        >
+                    </CategoryAccount>}></Route>
                 </Routes>
             </Router>
         );
