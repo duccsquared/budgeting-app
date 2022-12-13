@@ -2,34 +2,6 @@ import {MainSection, BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, 
 import React from 'react';
 
 class TransactionTable extends React.Component {
-    getRowHTML(transaction,index) {
-        let rowData = (
-            <div>
-
-            </div>
-        )
-        if(index%2===0) {
-            return (
-                 <TR1>
-                    <TD>{transaction.date}</TD>
-                    <TD>{transaction.label}</TD>
-                    <TD>{transaction.amount}</TD>
-                    <TD>{transaction.category}</TD>
-                    <TD>{transaction.description}</TD>
-                </TR1>
-                )
-        }
-        return (
-            <TR2>
-               <TD>{transaction.date}</TD>
-               <TD>{transaction.label}</TD>
-               <TD>{transaction.amount}</TD>
-               <TD>{transaction.category}</TD>
-               <TD>{transaction.description}</TD>
-           </TR2>
-           )
-    }
-
     render() {
         let transactionList = this.props.transactionList
 
