@@ -226,3 +226,23 @@ export class TextArea extends React.Component {
         )
     }
 }
+
+export class Select extends React.Component {
+    render() {
+        return (
+            <select onChange = {this.props.onChange} className={"text-sm font-mono bg-zinc-600 shadow-lg hover:bg-zinc-400 transition duration-100 ease-in-out cursor-pointer"+ (this.props.className || "")}>
+                {this.props.children}
+            </select>
+        )
+    }
+}
+
+export class Option extends React.Component {
+    render() {
+        return (
+            <option className={"text-sm font-mono" + (this.props.className || "")}>
+                {this.props.children}
+            </option>
+        )
+    }
+}

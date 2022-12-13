@@ -83,7 +83,10 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                     </TableDisplay>}></Route>
                     <Route path="/addTransaction" element={<AddTransaction 
                         transactionList={this.state.transactionList} 
-                        addEntry={(date,label,amount,category,description) => this.addEntry(date,label,amount,category,description)}>
+                        addEntry={(date,label,amount,category,description) => this.addEntry(date,label,amount,category,description)}
+                        categoryList={this.state.categoryList}  
+                        accountList={this.state.accountList}
+                        >
                     </AddTransaction>}></Route>
                     <Route path="/categoryAccount" element={<CategoryAccount
                         categoryList={this.state.categoryList}  

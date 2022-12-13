@@ -1,5 +1,5 @@
 import React from 'react';
-import {MainSection, BtnMain, BtnSecondary, BtnMinim, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection, Input, TextArea, InputDate} from '../components.js';
+import {MainSection, BtnMain, BtnSecondary, BtnMinim, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection, Input, TextArea, InputDate, Select, Option} from '../components.js';
 
 class AddTransaction extends React.Component {
     constructor(props) {
@@ -50,13 +50,17 @@ class AddTransaction extends React.Component {
                         <div className="inline-flex">
                             <P>category:</P>
                             <div className="w-2"/>
-                            <Input onChange={(e) => this.setState({category: e.target.value})}/>
+                            <Select onChange={(e)=> this.setState({category: this.props.categoryList[e.nativeEvent.target.selectedIndex]})}>
+                                {this.props.categoryList.map((category) => <Option>{category}</Option>)}
+                            </Select>
                         </div>
                         <div className="h-4"/>
                         <div className="inline-flex">
                             <P>account:</P>
                             <div className="w-2"/>
-                            <Input onChange={(e) => this.setState({account: e.target.value})}/>
+                            <Select onChange={(e)=> this.setState({account: this.props.accountList[e.nativeEvent.target.selectedIndex]})}>
+                                {this.props.accountList.map((account) => <Option>{account}</Option>)}
+                            </Select>
                         </div>
                         <div className="h-4"/>
                     </SubSection>
