@@ -14,7 +14,8 @@ class TransactionTable extends React.Component {
             (a,b)=> invertFunc(a.label.localeCompare(b.label)),
             (a,b)=> invertFunc(a.amount - b.amount),
             (a,b)=> invertFunc(a.category.localeCompare(b.category)),
-            (a,b)=> invertFunc(a.description.localeCompare(b.description))]
+            (a,b)=> invertFunc(a.description.localeCompare(b.description)),
+            (a,b)=> invertFunc(a.account.localeCompare(b.account))]
     }
     
     setSort(col) {
@@ -47,7 +48,8 @@ class TransactionTable extends React.Component {
                         <TransactionTH className="w-2/12" index={1} sortType={sortType} ascending={ascending} setSort={(col)=>this.setSort(col)}>Label</TransactionTH>
                         <TransactionTH className="w-1/12" index={2} sortType={sortType} ascending={ascending} setSort={(col)=>this.setSort(col)}>Amount</TransactionTH>
                         <TransactionTH className="w-2/12" index={3} sortType={sortType} ascending={ascending} setSort={(col)=>this.setSort(col)}>Category</TransactionTH>
-                        <TransactionTH className="w-5/12" index={4} sortType={sortType} ascending={ascending} setSort={(col)=>this.setSort(col)}>Description</TransactionTH>
+                        <TransactionTH className="w-3/12" index={4} sortType={sortType} ascending={ascending} setSort={(col)=>this.setSort(col)}>Description</TransactionTH>
+                        <TransactionTH className="w-2/12" index={5} sortType={sortType} ascending={ascending} setSort={(col)=>this.setSort(col)}>Account</TransactionTH>
                         <TH className="w-1/12"></TH>
                     </TR1>
                 </THead>
@@ -87,6 +89,7 @@ class TransactionRow extends React.Component {
                <TD>{this.props.transaction.amount}</TD>
                <TD>{this.props.transaction.category}</TD>
                <TD>{this.props.transaction.description}</TD>
+               <TD>{this.props.transaction.account}</TD>
                <TD><BtnMain onClick={() => this.props.removeEntry(this.props.index)}>X</BtnMain></TD>
            </TR>
            )

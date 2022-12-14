@@ -15,7 +15,7 @@ class AddTransaction extends React.Component {
     }
 
     onConfirm() {
-        this.props.addEntry(this.state.date,this.state.label,this.state.amount,this.state.category,this.state.description)
+        this.props.addEntry(this.state.date,this.state.label,this.state.amount,this.state.category,this.state.description,this.state.account)
     }
 
     render() {

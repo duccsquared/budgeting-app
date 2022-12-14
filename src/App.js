@@ -22,13 +22,13 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                 categoryList: ["food","groceries","furniture","electricity"],
                 accountList: ["cash","bank"]
         }
-        this.addEntry("22/11/2022","Lunch",5,"Food","Chicken rice at uni")
-        this.addEntry("23/11/2022","Steam",10,"Games")
-        this.addEntry("23/11/2022","Groceries",40,"Food","A bunch of stuff for a few days")
-        this.addEntry("24/11/2022","Laundry Card",50,"Laundry","Refilled card")
+        this.addEntry("22/11/2022","Lunch",5,"Food","Chicken rice at uni","cash")
+        this.addEntry("23/11/2022","Steam",10,"Games","","bank")
+        this.addEntry("23/11/2022","Groceries",40,"Food","A bunch of stuff for a few days","cash")
+        this.addEntry("24/11/2022","Laundry Card",50,"Laundry","Refilled card","bank")
     }
-    addEntry(date="5/5/2020",label="default",amount=0,category="none",description="") {
-        this.state.transactionList.push(new Transaction(date,label,amount,category,description))
+    addEntry(date="5/5/2020",label="default",amount=0,category="none",description="",account="") {
+        this.state.transactionList.push(new Transaction(date,label,amount,category,description,account))
         this.setState({
             transactionList: this.state.transactionList
         })
