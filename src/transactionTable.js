@@ -2,18 +2,52 @@ import {MainSection, BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, 
 import React from 'react';
 
 class TransactionTable extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            sortType: null,
+            ascending: true
+        }
+        let invertFunc = (x) => this.state.ascending ? x : (x*-1)
+        this.compareFuncs = [
+            (a,b)=> invertFunc(a.date.localeCompare(b.date)),
+            (a,b)=> invertFunc(a.label.localeCompare(b.label)),
+            (a,b)=> invertFunc(a.amount - b.amount),
+            (a,b)=> invertFunc(a.category.localeCompare(b.category)),
+            (a,b)=> invertFunc(a.description.localeCompare(b.description))]
+    }
+    
+    setSort(col) {
+        if(col===this.state.sortType) { // toggle between ascending and descending 
+            this.setState({
+                ascending: !this.state.ascending
+            })
+        }
+        else { // sort ascending with the new column
+            this.setState({
+                sortType: col,
+                ascending: true
+            })
+        }
+
+    }
     render() {
         let transactionList = this.props.transactionList
-
+        if(this.state.sortType!=null) {
+            let func = this.compareFuncs[this.state.sortType]
+            transactionList = transactionList.sort((a,b) => func(a,b))
+        }
+        let sortType = this.state.sortType
+        let ascending = this.state.ascending
         return (
             <Table className="table-fixed">
                 <THead>
                     <TR1>
-                        <TH className="w-1/12">Date</TH>
-                        <TH className="w-2/12">Label</TH>
-                        <TH className="w-1/12">Amount</TH>
-                        <TH className="w-2/12">Category</TH>
-                        <TH className="w-5/12">Description</TH>
+                        <TransactionTH className="w-1/12" index={0} sortType={sortType} ascending={ascending} setSort={(col)=>this.setSort(col)}>Date</TransactionTH>
+                        <TransactionTH className="w-2/12" index={1} sortType={sortType} ascending={ascending} setSort={(col)=>this.setSort(col)}>Label</TransactionTH>
+                        <TransactionTH className="w-1/12" index={2} sortType={sortType} ascending={ascending} setSort={(col)=>this.setSort(col)}>Amount</TransactionTH>
+                        <TransactionTH className="w-2/12" index={3} sortType={sortType} ascending={ascending} setSort={(col)=>this.setSort(col)}>Category</TransactionTH>
+                        <TransactionTH className="w-5/12" index={4} sortType={sortType} ascending={ascending} setSort={(col)=>this.setSort(col)}>Description</TransactionTH>
                         <TH className="w-1/12"></TH>
                     </TR1>
                 </THead>
@@ -26,7 +60,24 @@ class TransactionTable extends React.Component {
         )
     }
 }
-
+class TransactionTH extends React.Component {
+    render() {
+        let text = this.props.children 
+        if(this.props.sortType===this.props.index) {
+            if(this.props.ascending) {
+                text += " ▲"
+            }
+            else {
+                text += " ▼"
+            }
+        }
+        return (
+            <TH className={this.props.className} onClick={()=>this.props.setSort(this.props.index)}>
+                {text}
+            </TH>
+        )
+    }
+}
 class TransactionRow extends React.Component {
     render() {
         return (

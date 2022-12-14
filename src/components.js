@@ -157,7 +157,7 @@ export class TR2 extends React.Component {
 export class TH extends React.Component {
     render() {
         return (
-            <th className={"text-sm font-mono bg-zinc-700 border-2 border-zinc-800 "+ (this.props.className || "")}>
+            <th onClick={this.props.onClick} className={"text-sm font-mono bg-zinc-700 border-2 border-zinc-800 "+ (this.props.className || "")}>
                 {this.props.children}
             </th>
         )
