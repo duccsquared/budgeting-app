@@ -7,6 +7,8 @@ import TableDisplay from './pages/tableDisplay.js'
 import Transaction from './data/transaction.js'
 import AddTransaction from './pages/addTransaction.js'
 import CategoryAccount from './pages/categoryAccount.js';
+import Category from './data/category.js'
+import Account from './data/account.js';
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import React from 'react';
@@ -17,14 +19,23 @@ class App extends React.Component { // <div style={{height: 20}}></div>
         super(props)
         this.state = {
                 transactionList: [],
-                categoryList: ["none","food","groceries","furniture","laundry","games"],
-                accountList: ["none","cash","bank"],
+                categoryList: [
+                    new Category("none"),
+                    new Category("food"),
+                    new Category("groceries"),
+                    new Category("furniture"),
+                    new Category("laundry"),
+                    new Category("games")],
+                accountList: [
+                    new Account("none"),
+                    new Account("cash"),
+                    new Account("bank")],
                 selectedTransaction: null
         }
-        this.addEntry("2022-11-22","Lunch",5,"food","Chicken rice at uni","cash")
-        this.addEntry("2022-11-23","Steam",10,"games","","bank")
-        this.addEntry("2022-11-23","Groceries",40,"food","A bunch of stuff for a few days","cash")
-        this.addEntry("2022-11-24","Laundry Card",50,"laundry","Refilled card","bank")
+        this.addEntry("2022-11-22","Lunch",5,this.state.categoryList[1],"Chicken rice at uni",this.state.accountList[1])
+        this.addEntry("2022-11-23","Steam",10,this.state.categoryList[5],"",this.state.accountList[2])
+        this.addEntry("2022-11-23","Groceries",40,this.state.categoryList[1],"A bunch of stuff for a few days",this.state.accountList[1])
+        this.addEntry("2022-11-24","Laundry Card",50,this.state.categoryList[4],"Refilled card",this.state.accountList[2])
     }
     addEntry(date="5/5/2020",label="default",amount=0,category="none",description="",account="") {
         this.state.transactionList.push(new Transaction(date,label,amount,category,description,account))
@@ -39,25 +50,27 @@ class App extends React.Component { // <div style={{height: 20}}></div>
         })
     }
     addCategory(category) {
-        this.state.categoryList.push(category)
+        this.state.categoryList.push(new Category(category))
         this.setState({
             categoryList: this.state.categoryList
         })
     }
     removeCategory(index) {
-        this.state.categoryList.splice(index,1)
+        let category = this.state.categoryList.splice(index,1)[0]
+        category.name = "<DELETED>"
         this.setState({
             categoryList: this.state.categoryList
         })
     }
     addAccount(account) {
-        this.state.accountList.push(account)
+        this.state.accountList.push(new Account(account))
         this.setState({
             accountList: this.state.accountList
         })
     }
     removeAccount(index) {
-        this.state.accountList.splice(index,1)
+        let account = this.state.accountList.splice(index,1)[0]
+        account.name = "<DELETED>"
         this.setState({
             accountList: this.state.accountList
         })

@@ -10,8 +10,8 @@ class AddTransaction extends React.Component {
             label: "",
             date: "",
             amount: 0,
-            category: "",
-            account: "",
+            category: this.props.categoryList[0],
+            account: this.props.accountList[0],
             description: ""
         }
     }
@@ -64,16 +64,16 @@ class AddTransaction extends React.Component {
                         <div className="inline-flex">
                             <P>category:</P>
                             <div className="w-2"/>
-                            <Select onChange={(e)=> this.setState({category: this.props.categoryList[e.nativeEvent.target.selectedIndex]})} {...this.state.isInitial?{value: transaction!==null?transaction.category:""}:{}}>
-                                {this.props.categoryList.map((category) => <Option>{category}</Option>)}
+                            <Select onChange={(e)=> this.setState({category: this.props.categoryList[e.nativeEvent.target.selectedIndex]})} {...this.state.isInitial?{value: transaction!==null?transaction.category.name:""}:{}}>
+                                {this.props.categoryList.map((category) => <Option>{category.name}</Option>)}
                             </Select>
                         </div>
                         <div className="h-4"/>
                         <div className="inline-flex">
                             <P>account:</P>
                             <div className="w-2"/>
-                            <Select onChange={(e)=> this.setState({account: this.props.accountList[e.nativeEvent.target.selectedIndex]})} {...this.state.isInitial?{value: transaction!==null?transaction.account:""}:{}}>
-                                {this.props.accountList.map((account) => <Option>{account}</Option>)}
+                            <Select onChange={(e)=> this.setState({account: this.props.accountList[e.nativeEvent.target.selectedIndex]})} {...this.state.isInitial?{value: transaction!==null?transaction.account.name:""}:{}}>
+                                {this.props.accountList.map((account) => <Option>{account.name}</Option>)}
                             </Select>
                         </div>
                         <div className="h-4"/>
@@ -96,8 +96,8 @@ class AddTransaction extends React.Component {
                 label: transaction!==null?transaction.label:"",
                 date: transaction!==null?transaction.date:"",
                 amount: transaction!==null?transaction.amount:0,
-                category: transaction!==null?transaction.category:"none",
-                account: transaction!==null?transaction.account:"none",
+                category: transaction!==null?transaction.category:this.props.categoryList[0],
+                account: transaction!==null?transaction.account:this.props.accountList[0],
                 description: transaction!==null?transaction.description:"",
             })
         }

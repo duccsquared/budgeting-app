@@ -40,7 +40,7 @@ class CategorySection extends React.Component {
         return (
             <SubSection>
                 <P>categories</P>
-                {categoryList.map((category) => <CheckBox value="">{category}</CheckBox>)}
+                {categoryList.map((category) => <CheckBox value="">{category.name}</CheckBox>)}
             </SubSection>
         )
     }
@@ -52,7 +52,7 @@ class AccountSection extends React.Component {
         return (
             <SubSection>
                 <P>accounts</P>
-                {accountList.map((account) => <CheckBox value="">{account}</CheckBox>)}
+                {accountList.map((account) => <CheckBox value="">{account.name}</CheckBox>)}
             </SubSection>
         )
     }

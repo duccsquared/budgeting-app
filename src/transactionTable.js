@@ -14,9 +14,9 @@ class TransactionTable extends React.Component {
             (a,b)=> invertFunc(a.date.localeCompare(b.date)),
             (a,b)=> invertFunc(a.label.localeCompare(b.label)),
             (a,b)=> invertFunc(a.amount - b.amount),
-            (a,b)=> invertFunc(a.category.localeCompare(b.category)),
+            (a,b)=> invertFunc(a.category.name.localeCompare(b.category.name)),
             (a,b)=> invertFunc(a.description.localeCompare(b.description)),
-            (a,b)=> invertFunc(a.account.localeCompare(b.account))]
+            (a,b)=> invertFunc(a.account.name.localeCompare(b.account.name))]
     }
     
     setSort(col) {
@@ -97,9 +97,9 @@ function TransactionRow(props) {
             <TD>{props.transaction.date}</TD>
             <TD>{props.transaction.label}</TD>
             <TD>{props.transaction.amount}</TD>
-            <TD>{props.transaction.category}</TD>
+            <TD>{props.transaction.category.name}</TD>
             <TD>{props.transaction.description}</TD>
-            <TD>{props.transaction.account}</TD>
+            <TD>{props.transaction.account.name}</TD>
             <TD>
                 <BtnSecondary onClick={() => {props.setSelectedTransaction(props.index); navigate("/addTransaction")}}>
                     E
