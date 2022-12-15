@@ -177,9 +177,10 @@ export class TD extends React.Component {
 export class CheckBox extends React.Component {
     render() {
         let id = this.props.id || genRandomID()
+        console.log(this.props.checked)
         return (
             <div className={""+ (this.props.className || "")}>
-                <input className="" type="checkbox" value={this.props.value || this.props.children} id={id}></input>
+                <input className="" type="checkbox" value={this.props.value || this.props.children} id={id} checked={this.props.checked} onChange={(e)=>this.props.onChange(e)}></input>
                 <label className="p-1 text-sm font-mono" htmlFor={id}>
                     {this.props.children}
                 </label>

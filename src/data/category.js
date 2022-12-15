@@ -1,6 +1,7 @@
-class Category { // TODO: refactor code to use this class to allow name to be modified
+class Category { 
     constructor(name) {
         this.name = name
+        this.checked = true
     }
 }
 

@@ -37,6 +37,10 @@ class App extends React.Component { // <div style={{height: 20}}></div>
         this.addEntry("2022-11-23","Groceries",40,this.state.categoryList[1],"A bunch of stuff for a few days",this.state.accountList[1])
         this.addEntry("2022-11-24","Laundry Card",50,this.state.categoryList[4],"Refilled card",this.state.accountList[2])
     }
+    update() {
+        console.log("oop")
+        this.setState({})
+    }
     addEntry(date="5/5/2020",label="default",amount=0,category="none",description="",account="") {
         this.state.transactionList.push(new Transaction(date,label,amount,category,description,account))
         this.setState({
@@ -95,7 +99,8 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                         removeEntry={(index) => this.removeEntry(index)} 
                         categoryList={this.state.categoryList}  
                         accountList={this.state.accountList}
-                        setSelectedTransaction={(selectedTransaction) => this.setSelectedTransaction(selectedTransaction)}>      
+                        setSelectedTransaction={(selectedTransaction) => this.setSelectedTransaction(selectedTransaction)}     
+                        update={()=>this.update()}> 
                     </TableDisplay>}></Route>
                     <Route path="/addTransaction" element={<AddTransaction 
                         transactionList={this.state.transactionList} 

@@ -39,6 +39,7 @@ class TransactionTable extends React.Component {
             let func = this.compareFuncs[this.state.sortType]
             transactionList = transactionList.sort((a,b) => func(a,b))
         }
+        transactionList = transactionList.filter((transaction) => transaction.category.checked && transaction.account.checked)
         let sortType = this.state.sortType
         let ascending = this.state.ascending
         return (
