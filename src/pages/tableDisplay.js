@@ -9,7 +9,11 @@ function TableDisplay(props) {
             <div className="grid grid-cols-6 gap-4">
                 <SubSection className="col-span-6"></SubSection>
                 <SubSection className="col-span-4 row-span-2">
-                    <TransactionTable transactionList={props.transactionList} removeEntry={(index) => props.removeEntry(index)}/>
+                    <TransactionTable 
+                        transactionList={props.transactionList} 
+                        removeEntry={(index) => props.removeEntry(index)}
+                        setSelectedTransaction={(selectedTransaction) => props.setSelectedTransaction(selectedTransaction)}
+                    />
                 </SubSection>
                 <SubSection>
                     <P>data type</P>

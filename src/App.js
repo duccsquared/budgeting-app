@@ -10,22 +10,21 @@ import CategoryAccount from './pages/categoryAccount.js';
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import React from 'react';
-// function logBeep() {
-//   console.log(logBeep)
-// }
+
 
 class App extends React.Component { // <div style={{height: 20}}></div>
     constructor(props) {
         super(props)
         this.state = {
                 transactionList: [],
-                categoryList: ["food","groceries","furniture","electricity"],
-                accountList: ["cash","bank"]
+                categoryList: ["none","food","groceries","furniture","laundry","games"],
+                accountList: ["none","cash","bank"],
+                selectedTransaction: null
         }
-        this.addEntry("22/11/2022","Lunch",5,"Food","Chicken rice at uni","cash")
-        this.addEntry("23/11/2022","Steam",10,"Games","","bank")
-        this.addEntry("23/11/2022","Groceries",40,"Food","A bunch of stuff for a few days","cash")
-        this.addEntry("24/11/2022","Laundry Card",50,"Laundry","Refilled card","bank")
+        this.addEntry("2022-11-22","Lunch",5,"food","Chicken rice at uni","cash")
+        this.addEntry("2022-11-23","Steam",10,"games","","bank")
+        this.addEntry("2022-11-23","Groceries",40,"food","A bunch of stuff for a few days","cash")
+        this.addEntry("2022-11-24","Laundry Card",50,"laundry","Refilled card","bank")
     }
     addEntry(date="5/5/2020",label="default",amount=0,category="none",description="",account="") {
         this.state.transactionList.push(new Transaction(date,label,amount,category,description,account))
@@ -63,6 +62,9 @@ class App extends React.Component { // <div style={{height: 20}}></div>
             accountList: this.state.accountList
         })
     }
+    setSelectedTransaction(selectedTransaction) {
+        this.setState({selectedTransaction: selectedTransaction})
+    }
     componentDidMount() {
 
     }
@@ -70,7 +72,7 @@ class App extends React.Component { // <div style={{height: 20}}></div>
 
         return (
             <Router>
-                <NavBar></NavBar>
+                <NavBar setSelectedTransaction={(selectedTransaction) => this.setSelectedTransaction(selectedTransaction)}></NavBar>
                 <Routes>
                     <Route path="/" element={<HomePage></HomePage>}></Route>
                     <Route path="/chartDisplay" element={<ChartDisplay></ChartDisplay>}></Route>
@@ -79,13 +81,15 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                         transactionList={this.state.transactionList} 
                         removeEntry={(index) => this.removeEntry(index)} 
                         categoryList={this.state.categoryList}  
-                        accountList={this.state.accountList}>      
+                        accountList={this.state.accountList}
+                        setSelectedTransaction={(selectedTransaction) => this.setSelectedTransaction(selectedTransaction)}>      
                     </TableDisplay>}></Route>
                     <Route path="/addTransaction" element={<AddTransaction 
                         transactionList={this.state.transactionList} 
-                        addEntry={(date,label,amount,category,description) => this.addEntry(date,label,amount,category,description)}
+                        addEntry={(date,label,amount,category,description,account) => this.addEntry(date,label,amount,category,description,account)}
                         categoryList={this.state.categoryList}  
                         accountList={this.state.accountList}
+                        selectedTransaction={this.state.selectedTransaction}
                         >
                     </AddTransaction>}></Route>
                     <Route path="/categoryAccount" element={<CategoryAccount

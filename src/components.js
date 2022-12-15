@@ -206,7 +206,7 @@ export class RadioBox extends React.Component {
 export class Input extends React.Component {
     render() {
         return (
-            <input onChange={this.props.onChange} className="text-black text-sm font-mono"/>
+            <input className="text-black text-sm font-mono" {...this.props}/>
         )
     }
 }
@@ -214,7 +214,7 @@ export class Input extends React.Component {
 export class InputDate extends React.Component {
     render() {
         return (
-            <input type="date" onChange={this.props.onChange} className="text-black text-sm font-mono"/>
+            <input type="date" className="text-black text-sm font-mono" {...this.props}/>
         )
     }
 }
@@ -222,7 +222,7 @@ export class InputDate extends React.Component {
 export class TextArea extends React.Component {
     render() {
         return (
-            <textarea onChange={this.props.onChange} className="text-black text-sm font-mono w-11/12" rows={4}/>
+            <textarea onChange={this.props.onChange} className="text-black text-sm font-mono w-11/12" rows={4} {...this.props}/>
         )
     }
 }
@@ -230,7 +230,7 @@ export class TextArea extends React.Component {
 export class Select extends React.Component {
     render() {
         return (
-            <select onChange = {this.props.onChange} className={"text-sm font-mono bg-zinc-600 shadow-lg hover:bg-zinc-400 transition duration-100 ease-in-out cursor-pointer"+ (this.props.className || "")}>
+            <select onChange = {this.props.onChange} className={"text-sm font-mono bg-zinc-600 shadow-lg hover:bg-zinc-400 transition duration-100 ease-in-out cursor-pointer"+ (this.props.className || "")} {...this.props}>
                 {this.props.children}
             </select>
         )
@@ -240,7 +240,7 @@ export class Select extends React.Component {
 export class Option extends React.Component {
     render() {
         return (
-            <option className={"text-sm font-mono" + (this.props.className || "")}>
+            <option className={"text-sm font-mono" + (this.props.className || "")} {...this.props}>
                 {this.props.children}
             </option>
         )

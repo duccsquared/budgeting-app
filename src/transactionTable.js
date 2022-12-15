@@ -1,5 +1,6 @@
 import {MainSection, BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection} from './components.js';
 import React from 'react';
+import {Navigate, useNavigate} from "react-router-dom"
 
 class TransactionTable extends React.Component {
     constructor(props) {
@@ -55,7 +56,16 @@ class TransactionTable extends React.Component {
                 </THead>
                 <TBody>
                     {
-                    transactionList.map((transaction,index) => <TransactionRow transaction={transaction} index={index} removeEntry={(index) => this.props.removeEntry(index)}/>)
+                    transactionList.map(
+                        (transaction,index) => (
+                            <TransactionRow 
+                                transaction={transaction} 
+                                index={index} 
+                                removeEntry={(index) => this.props.removeEntry(index)}
+                                setSelectedTransaction={(selectedTransaction) => this.props.setSelectedTransaction(selectedTransaction)}
+                            />
+                        )
+                    )
                     }
                 </TBody>
             </Table> 
@@ -80,20 +90,25 @@ class TransactionTH extends React.Component {
         )
     }
 }
-class TransactionRow extends React.Component {
-    render() {
-        return (
-            <TR index={this.props.index}>
-               <TD>{this.props.transaction.date}</TD>
-               <TD>{this.props.transaction.label}</TD>
-               <TD>{this.props.transaction.amount}</TD>
-               <TD>{this.props.transaction.category}</TD>
-               <TD>{this.props.transaction.description}</TD>
-               <TD>{this.props.transaction.account}</TD>
-               <TD><BtnMain onClick={() => this.props.removeEntry(this.props.index)}>X</BtnMain></TD>
-           </TR>
-           )
-    }
+function TransactionRow(props) {
+    let navigate = useNavigate();
+    return (
+        <TR index={props.index}>
+            <TD>{props.transaction.date}</TD>
+            <TD>{props.transaction.label}</TD>
+            <TD>{props.transaction.amount}</TD>
+            <TD>{props.transaction.category}</TD>
+            <TD>{props.transaction.description}</TD>
+            <TD>{props.transaction.account}</TD>
+            <TD>
+                <BtnSecondary onClick={() => {props.setSelectedTransaction(props.index); navigate("/addTransaction")}}>
+                    E
+                </BtnSecondary> 
+                <BtnMain onClick={() => props.removeEntry(props.index)}>X</BtnMain>
+                
+            </TD>
+        </TR>
+        )
 }
 
 function TR(props) {
