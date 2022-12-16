@@ -1,3 +1,6 @@
+/*
+Table that displays a list of all transactions
+*/
 import {MainSection, BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection} from './components.js';
 import React from 'react';
 import {Navigate, useNavigate} from "react-router-dom"

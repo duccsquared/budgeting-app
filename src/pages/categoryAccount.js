@@ -1,3 +1,6 @@
+/*
+Page that allows for adding, editing, and deleting categories and accounts
+*/
 import React from 'react';
 import {MainSection, BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection, BtnMinim, Input} from '../components.js';
 

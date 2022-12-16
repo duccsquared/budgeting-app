@@ -1,3 +1,6 @@
+/*
+Components to be used in place of standard HTML elements to ensure stylistic consistency
+*/
 import React from 'react';
 import './index.css';
 

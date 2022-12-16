@@ -1,3 +1,6 @@
+/*
+Page that displays the transaction data in the form of a table 
+*/
 import React from 'react';
 import {MainSection, BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection, BtnMinim} from '../components.js';
 import TransactionTable from '../transactionTable.js';

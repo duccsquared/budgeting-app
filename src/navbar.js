@@ -1,3 +1,6 @@
+/*
+Defines the style of the navigation bar for the application
+*/
 import React from 'react';
 import {H1, BtnMinim} from './components.js';
 import {useNavigate} from "react-router-dom"

@@ -1,3 +1,7 @@
+/*
+Manages routing, along with global variables for the application
+*/
+
 import {BtnMain, BtnSecondary, H1, H2, H3, P, Table, TR1, TR2, TH, TD, CheckBox, RadioBox} from './components.js';
 import NavBar from './navbar.js'
 import HomePage from './pages/home.js'

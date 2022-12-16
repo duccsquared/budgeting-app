@@ -1,3 +1,6 @@
+/*
+Page that allows for transactions to be added
+*/
 import React from 'react';
 import {MainSection, BtnMain, BtnSecondary, BtnMinim, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection, Input, TextArea, InputDate, Select, Option} from '../components.js';
 import { Link, useNavigate } from 'react-router-dom';

@@ -1,3 +1,6 @@
+/*
+temporary test page
+*/
 import {MainSection, SubSection, BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox} from '../components.js';
 
 function HomePage() { // <div style={{height: 20}}></div>
