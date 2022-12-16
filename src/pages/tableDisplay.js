@@ -5,36 +5,46 @@ import React from 'react';
 import {MainSection, BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection, BtnMinim} from '../components.js';
 import TransactionTable from '../transactionTable.js';
 
-function TableDisplay(props) {
-    return (
-        <MainSection>
-            <H2>Table Data</H2>
-            <div className="grid grid-cols-6 gap-4">
-                <SubSection className="col-span-6"></SubSection>
-                <SubSection className="col-span-4 row-span-2">
-                    <TransactionTable 
-                        transactionList={props.transactionList} 
-                        removeEntry={(index) => props.removeEntry(index)}
-                        setSelectedTransaction={(selectedTransaction) => props.setSelectedTransaction(selectedTransaction)}
-                    />
-                </SubSection>
-                <SubSection>
-                    <P>data type</P>
-                    <RadioBox name="dataType" value="net">net cashflow</RadioBox>
-                    <RadioBox name="dataType" value="in">inflow</RadioBox>
-                    <RadioBox name="dataType" value="out">outflow</RadioBox>
-                </SubSection>
-                <AccountSection accountList={props.accountList} update={()=>props.update()}/>
-                <SubSection>
-                    <P>clustering</P>
-                    <RadioBox name="clustering" value="sep">separate entities</RadioBox>
-                    <RadioBox name="clustering" value="day">cluster by day</RadioBox>
-                    <RadioBox name="clustering" value="month">cluster by month</RadioBox>
-                </SubSection>
-                <CategorySection categoryList={props.categoryList} update={()=>props.update()}/>
-            </div>
-        </MainSection>
-    )
+class TableDisplay extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            dateType: "net"
+        }
+    }
+    render() {
+        let props = this.props
+        return (
+            <MainSection>
+                <H2>Table Data</H2>
+                <div className="grid grid-cols-6 gap-4">
+                    <SubSection className="col-span-6"></SubSection>
+                    <SubSection className="col-span-4 row-span-2">
+                        <TransactionTable 
+                            transactionList={props.transactionList} 
+                            removeEntry={(index) => props.removeEntry(index)}
+                            setSelectedTransaction={(selectedTransaction) => props.setSelectedTransaction(selectedTransaction)}
+                            dataType={this.state.dataType}
+                        />
+                    </SubSection>
+                    <SubSection>
+                        <P>data type</P>
+                        <RadioBox name="dataType" value="net" onChange={()=>this.setState({dataType:"net"})}>net cashflow</RadioBox>
+                        <RadioBox name="dataType" value="in" onChange={()=>this.setState({dataType:"in"})}>inflow</RadioBox>
+                        <RadioBox name="dataType" value="out" onChange={()=>this.setState({dataType:"out"})}>outflow</RadioBox>
+                    </SubSection>
+                    <AccountSection accountList={props.accountList} update={()=>props.update()}/>
+                    <SubSection>
+                        <P>clustering</P>
+                        <RadioBox name="clustering" value="sep">separate entities</RadioBox>
+                        <RadioBox name="clustering" value="day">cluster by day</RadioBox>
+                        <RadioBox name="clustering" value="month">cluster by month</RadioBox>
+                    </SubSection>
+                    <CategorySection categoryList={props.categoryList} update={()=>props.update()}/>
+                </div>
+            </MainSection>
+        )
+    }
 }
 
 class CategorySection extends React.Component {

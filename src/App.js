@@ -36,10 +36,11 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                     new Account("bank")],
                 selectedTransaction: null
         }
-        this.addEntry("2022-11-22","Lunch",5,this.state.categoryList[1],"Chicken rice at uni",this.state.accountList[1])
-        this.addEntry("2022-11-23","Steam",10,this.state.categoryList[5],"",this.state.accountList[2])
-        this.addEntry("2022-11-23","Groceries",40,this.state.categoryList[1],"A bunch of stuff for a few days",this.state.accountList[1])
-        this.addEntry("2022-11-24","Laundry Card",50,this.state.categoryList[4],"Refilled card",this.state.accountList[2])
+        this.addEntry("2022-11-22","Lunch",-5,this.state.categoryList[1],"Chicken rice at uni",this.state.accountList[1])
+        this.addEntry("2022-11-23","Steam",-10,this.state.categoryList[5],"",this.state.accountList[2])
+        this.addEntry("2022-11-23","Free Money",20,this.state.categoryList[0],"",this.state.accountList[1])
+        this.addEntry("2022-11-24","Groceries",-40,this.state.categoryList[1],"A bunch of stuff for a few days",this.state.accountList[1])
+        this.addEntry("2022-11-24","Laundry Card",-50,this.state.categoryList[4],"Refilled card",this.state.accountList[2])
     }
     update() {
         console.log("oop")

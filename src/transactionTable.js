@@ -43,6 +43,12 @@ class TransactionTable extends React.Component {
             transactionList = transactionList.sort((a,b) => func(a,b))
         }
         transactionList = transactionList.filter((transaction) => transaction.category.checked && transaction.account.checked)
+        if(this.props.dataType==="in") {
+            transactionList = transactionList.filter((transaction) => transaction.amount>=0)
+        }
+        else if(this.props.dataType==="out") {
+            transactionList = transactionList.filter((transaction) => transaction.amount<=0)
+        }
         let sortType = this.state.sortType
         let ascending = this.state.ascending
         return (

@@ -198,7 +198,7 @@ export class RadioBox extends React.Component {
         let id = this.props.id || genRandomID()
         return (
             <div className={""+ (this.props.className || "")}>
-                <input className="" type="radio" value={this.props.value || this.props.children} name={this.props.name} id={id}></input>
+                <input className="" type="radio" value={this.props.value || this.props.children} name={this.props.name} id={id} onChange={this.props.onChange}></input>
                 <label className="p-1 text-sm font-mono" htmlFor={id}>
                     {this.props.children}
                 </label>
