@@ -2,14 +2,16 @@
 Page that displays the transaction data in the form of a table 
 */
 import React from 'react';
-import {MainSection, BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection, BtnMinim} from '../components.js';
+import {MainSection, BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection, BtnMinim, InputDate} from '../components.js';
 import TransactionTable from '../transactionTable.js';
 
 class TableDisplay extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            dateType: "net"
+            dateType: "net",
+            startDate: null,
+            endDate: null
         }
     }
     render() {
@@ -25,6 +27,8 @@ class TableDisplay extends React.Component {
                             removeEntry={(index) => props.removeEntry(index)}
                             setSelectedTransaction={(selectedTransaction) => props.setSelectedTransaction(selectedTransaction)}
                             dataType={this.state.dataType}
+                            startDate={this.state.startDate}
+                            endDate={this.state.endDate}
                         />
                     </SubSection>
                     <SubSection>
@@ -35,10 +39,17 @@ class TableDisplay extends React.Component {
                     </SubSection>
                     <AccountSection accountList={props.accountList} update={()=>props.update()}/>
                     <SubSection>
-                        <P>clustering</P>
-                        <RadioBox name="clustering" value="sep">separate entities</RadioBox>
-                        <RadioBox name="clustering" value="day">cluster by day</RadioBox>
-                        <RadioBox name="clustering" value="month">cluster by month</RadioBox>
+                        <CheckBox>date range</CheckBox>
+                        <div className="inline-flex">
+                            <P>start:</P>
+                            <div className="w-2"/>
+                            <InputDate onChange={(e) => this.setState({startDate: e.target.value})}/>
+                        </div>
+                        <div className="inline-flex">
+                            <P>end:</P>
+                            <div className="w-2"/>
+                            <InputDate onChange={(e) => this.setState({endDate: e.target.value})}/>
+                        </div>
                     </SubSection>
                     <CategorySection categoryList={props.categoryList} update={()=>props.update()}/>
                 </div>

@@ -43,7 +43,6 @@ class App extends React.Component { // <div style={{height: 20}}></div>
         this.addEntry("2022-11-24","Laundry Card",-50,this.state.categoryList[4],"Refilled card",this.state.accountList[2])
     }
     update() {
-        console.log("oop")
         this.setState({})
     }
     addEntry(date="5/5/2020",label="default",amount=0,category="none",description="",account="") {

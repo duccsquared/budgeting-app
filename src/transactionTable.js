@@ -49,6 +49,14 @@ class TransactionTable extends React.Component {
         else if(this.props.dataType==="out") {
             transactionList = transactionList.filter((transaction) => transaction.amount<=0)
         }
+
+        if(this.props.startDate!==null && this.props.endDate!==null) {
+            let startDate = (new Date(this.props.startDate)).getTime()
+            let endDate = (new Date(this.props.endDate)).getTime()
+            if(startDate<=endDate) {
+                transactionList = transactionList.filter((transaction) => {let d = (new Date(transaction.date)).getTime(); return d >= startDate && d <= endDate})
+            }
+        }
         let sortType = this.state.sortType
         let ascending = this.state.ascending
         return (
