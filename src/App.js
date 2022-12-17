@@ -5,9 +5,11 @@ Manages routing, along with global variables for the application
 import {BtnMain, BtnSecondary, H1, H2, H3, P, Table, TR1, TR2, TH, TD, CheckBox, RadioBox, MainSection} from './components.js';
 import NavBar from './navbar.js'
 import HomePage from './pages/home.js'
+import LoginPage from './pages/login.js';
 import ChartDisplay from './pages/chartDisplay.js'
 import GraphDisplay from './pages/graphDisplay.js'
 import TableDisplay from './pages/tableDisplay.js'
+import User from './data/user.js';
 import Transaction from './data/transaction.js'
 import AddTransaction from './pages/addTransaction.js'
 import CategoryAccount from './pages/categoryAccount.js';
@@ -22,6 +24,9 @@ class App extends React.Component { // <div style={{height: 20}}></div>
     constructor(props) {
         super(props)
         this.state = {
+                loggedIn: true,
+                userList: [],
+                user: null,
                 transactionList: [],
                 categoryList: [
                     new Category("none"),
@@ -44,6 +49,20 @@ class App extends React.Component { // <div style={{height: 20}}></div>
     }
     update() {
         this.setState({})
+    }
+    setLoggedIn(loggedIn) {
+        this.setState({loggedIn: loggedIn})
+    }
+    addUser(username,password) {
+        let user = new User(username,password)
+        this.state.userList.push(user)
+        this.setState({
+            userList: this.state.userList
+        })
+        return user 
+    }
+    setUser(user) {
+        this.setState({user: user})
     }
     addEntry(date="5/5/2020",label="default",amount=0,category="none",description="",account="") {
         this.state.transactionList.push(new Transaction(date,label,amount,category,description,account))
@@ -90,12 +109,19 @@ class App extends React.Component { // <div style={{height: 20}}></div>
 
     }
     render() {
-
         return (
             <Router>
-                <NavBar setSelectedTransaction={(selectedTransaction) => this.setSelectedTransaction(selectedTransaction)}></NavBar>
+                <NavBar 
+                    setSelectedTransaction={(selectedTransaction) => this.setSelectedTransaction(selectedTransaction)}
+                    loggedIn={this.state.loggedIn}
+                ></NavBar>
                 <Routes>
-                    <Route path="/" element={<HomePage></HomePage>}></Route>
+                    <Route path="/" element={<LoginPage 
+                        setLoggedIn={(loggedIn) => this.setLoggedIn(loggedIn)}
+                        userList={this.state.userList}
+                        addUser={(username,password)=>this.addUser(username,password)}
+                        setUser={(user)=>this.setUser(user)}
+                    ></LoginPage>}></Route>
                     <Route path="/chartDisplay" element={<ChartDisplay></ChartDisplay>}></Route>
                     <Route path="/graphDisplay" element={<GraphDisplay></GraphDisplay>}></Route>
                     <Route path="/tableDisplay" element={<TableDisplay 

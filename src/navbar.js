@@ -12,6 +12,8 @@ export default function NavBar(props) {
         <div className="px-6 w-full flex flex-wrap items-center justify-between">
             <H1>Budgeting App</H1>
             <div className="flex-grow"></div>
+            {
+            props.loggedIn?
             <ul className="navbar-nav mr-auto lg:flex lg:flex-row">
                 <li className="nav-item">
                     <BtnMinim onClick={() => navigate("/graphDisplay")}>Trends</BtnMinim>
@@ -31,8 +33,10 @@ export default function NavBar(props) {
                 <li className="nav-item mb-2 lg:mb-0">
                     <BtnMinim onClick={() => navigate("/")}>Log Out</BtnMinim>
                 </li>
-
             </ul>
+            :
+            <div></div>
+            }
         </div>
     </nav>
     )
