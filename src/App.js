@@ -9,6 +9,7 @@ import LoginPage from './pages/login.js';
 import ChartDisplay from './pages/chartDisplay.js'
 import GraphDisplay from './pages/graphDisplay.js'
 import TableDisplay from './pages/tableDisplay.js'
+import DataObject from './data/dataObject.js';
 import User from './data/user.js';
 import Transaction from './data/transaction.js'
 import AddTransaction from './pages/addTransaction.js'
@@ -23,6 +24,7 @@ import React from 'react';
 class App extends React.Component { // <div style={{height: 20}}></div>
     constructor(props) {
         super(props)
+
         this.state = {
                 loggedIn: true,
                 userList: [],
@@ -41,11 +43,21 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                     new Account("bank")],
                 selectedTransaction: null
         }
-        this.addEntry("2022-11-22","Lunch",-5,this.state.categoryList[1],"Chicken rice at uni",this.state.accountList[1])
-        this.addEntry("2022-11-23","Steam",-10,this.state.categoryList[5],"",this.state.accountList[2])
-        this.addEntry("2022-11-23","Free Money",20,this.state.categoryList[0],"",this.state.accountList[1])
-        this.addEntry("2022-11-24","Groceries",-40,this.state.categoryList[1],"A bunch of stuff for a few days",this.state.accountList[1])
-        this.addEntry("2022-11-24","Laundry Card",-50,this.state.categoryList[4],"Refilled card",this.state.accountList[2])
+
+        DataObject.update = () => this.update()
+        User.getList = () => this.state.userList
+        User.add = (account) => this.addUser(account)
+        Transaction.getList = () => this.state.transactionList
+        Transaction.add = (transaction) => this.addTransaction(transaction)
+        Transaction.remove = (index) => this.removeEntry(index)
+        Category.getList = () => this.state.categoryList
+        Category.add = (category) => this.addCategory(category)
+        Category.remove = (index) => this.removeCategory(index)
+        Account.getList = () => this.state.accountList
+        Account.add = (account) => this.addAccount(account)
+        Account.remove = (index) => this.removeAccount(index)
+        
+        Transaction.setDefaultValues()
     }
     update() {
         this.setState({})
@@ -65,7 +77,10 @@ class App extends React.Component { // <div style={{height: 20}}></div>
         this.setState({user: user})
     }
     addEntry(date="5/5/2020",label="default",amount=0,category="none",description="",account="") {
-        this.state.transactionList.push(new Transaction(date,label,amount,category,description,account))
+        this.addTransaction(new Transaction(date,label,amount,category,description,account))
+    }
+    addTransaction(transaction) {
+        this.state.transactionList.push(transaction)
         this.setState({
             transactionList: this.state.transactionList
         })
