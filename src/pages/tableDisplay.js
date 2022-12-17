@@ -52,7 +52,7 @@ class TableDisplay extends React.Component {
                     </SubSection>
                     <AccountSection accountList={props.accountList} update={()=>props.update()}/>
                     <SubSection>
-                        <CheckBox>date range</CheckBox>
+                        <P>date range</P>
                         <div className="inline-flex">
                             <P>start:</P>
                             <div className="w-2"/>
