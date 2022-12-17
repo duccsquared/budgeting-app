@@ -16,6 +16,22 @@ class TableDisplay extends React.Component {
     }
     render() {
         let props = this.props
+        let transactionList = props.transactionList
+        transactionList = transactionList.filter((transaction) => transaction.category.checked && transaction.account.checked)
+        if(this.state.dataType==="in") {
+            transactionList = transactionList.filter((transaction) => transaction.amount>=0)
+        }
+        else if(this.state.dataType==="out") {
+            transactionList = transactionList.filter((transaction) => transaction.amount<=0)
+        }
+
+        if(this.state.startDate!==null && this.state.endDate!==null) {
+            let startDate = (new Date(this.state.startDate)).getTime()
+            let endDate = (new Date(this.state.endDate)).getTime()
+            if(startDate<=endDate) {
+                transactionList = transactionList.filter((transaction) => {let d = (new Date(transaction.date)).getTime(); return d >= startDate && d <= endDate})
+            }
+        }
         return (
             <MainSection>
                 <H2>Table Data</H2>
@@ -23,12 +39,9 @@ class TableDisplay extends React.Component {
                     <SubSection className="col-span-6"></SubSection>
                     <SubSection className="col-span-4 row-span-2">
                         <TransactionTable 
-                            transactionList={props.transactionList} 
+                            transactionList={transactionList} 
                             removeEntry={(index) => props.removeEntry(index)}
                             setSelectedTransaction={(selectedTransaction) => props.setSelectedTransaction(selectedTransaction)}
-                            dataType={this.state.dataType}
-                            startDate={this.state.startDate}
-                            endDate={this.state.endDate}
                         />
                     </SubSection>
                     <SubSection>
