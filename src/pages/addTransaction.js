@@ -15,7 +15,9 @@ class AddTransaction extends React.Component {
             amount: 0,
             category: this.props.categoryList[0],
             account: this.props.accountList[0],
-            description: ""
+            description: "",
+            isTransfer: false,
+            accountTransfer: this.props.accountList[0]
         }
     }
     onConfirm() {
@@ -31,6 +33,9 @@ class AddTransaction extends React.Component {
         this.render()
     }
     onAdd() {
+        if(this.state.isTransfer) {
+            this.props.addEntry(this.state.date,this.state.label,-this.state.amount,this.state.category,this.state.description,this.state.accountTransfer)
+        }
         this.props.addEntry(this.state.date,this.state.label,this.state.amount,this.state.category,this.state.description,this.state.account)
     }
 
@@ -80,6 +85,16 @@ class AddTransaction extends React.Component {
                             </Select>
                         </div>
                         <div className="h-4"/>
+                    </SubSection>
+                    <SubSection className="col-span-6">
+                        <CheckBox onChange={(e)=>{this.setState({isTransfer: !this.state.isTransfer})}}>is transfer</CheckBox>
+                        <div className="inline-flex">
+                            <P>transfer from:</P>
+                            <div className="w-2"/>
+                            <Select onChange={(e)=> this.setState({accountTransfer: this.props.accountList[e.nativeEvent.target.selectedIndex]})}>
+                                {this.props.accountList.map((account) => <Option>{account.name}</Option>)}
+                            </Select>
+                        </div>
                     </SubSection>
                     <SubSection className="col-span-6">
                         <div className="h-4"/>
