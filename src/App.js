@@ -2,7 +2,7 @@
 Manages routing, along with global variables for the application
 */
 
-import {BtnMain, BtnSecondary, H1, H2, H3, P, Table, TR1, TR2, TH, TD, CheckBox, RadioBox} from './components.js';
+import {BtnMain, BtnSecondary, H1, H2, H3, P, Table, TR1, TR2, TH, TD, CheckBox, RadioBox, MainSection} from './components.js';
 import NavBar from './navbar.js'
 import HomePage from './pages/home.js'
 import ChartDisplay from './pages/chartDisplay.js'
@@ -123,6 +123,13 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                         removeAccount={(index) => this.removeAccount(index)}
                         >
                     </CategoryAccount>}></Route>
+                    <Route path="*" element={
+                        <MainSection>
+                            <div className="h-10"></div>
+                            <H1>404</H1>
+                            <H2>page not found</H2>
+                        </MainSection>
+                    }></Route>
                 </Routes>
             </Router>
         );
