@@ -19,7 +19,9 @@ import Account from './data/account.js';
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+import { useEffect } from 'react';
 
 class App extends React.Component { // <div style={{height: 20}}></div>
     constructor(props) {
@@ -192,9 +194,19 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                         </MainSection>
                     }></Route>
                 </Routes>
+                <RerouteWrapper user={this.state.user}/>
             </Router>
         );
     }
+}
+
+function RerouteWrapper(props) {
+    let navigate = useNavigate()
+    let location = useLocation()
+    useEffect(() => {
+        if(props.user===null && location.pathname!=="/") {navigate("/")}
+    })
+    return <div></div>
 }
 
 export default App;
