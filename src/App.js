@@ -26,25 +26,18 @@ class App extends React.Component { // <div style={{height: 20}}></div>
         super(props)
 
         this.state = {
-                loggedIn: true,
+                loggedIn: false,
                 userList: [],
                 user: null,
                 transactionList: [],
-                categoryList: [
-                    new Category("none"),
-                    new Category("food"),
-                    new Category("groceries"),
-                    new Category("furniture"),
-                    new Category("laundry"),
-                    new Category("games")],
-                accountList: [
-                    new Account("none"),
-                    new Account("cash"),
-                    new Account("bank")],
+                hasDownloadedData: false,
+                categoryList: [],
+                accountList: [],
                 selectedTransaction: null
         }
 
         DataObject.update = () => this.update()
+        DataObject.getUser = () => this.state.user
         User.getList = () => this.state.userList
         User.add = (account) => this.addUser(account)
         Transaction.getList = () => this.state.transactionList
@@ -56,8 +49,10 @@ class App extends React.Component { // <div style={{height: 20}}></div>
         Account.getList = () => this.state.accountList
         Account.add = (account) => this.addAccount(account)
         Account.remove = (index) => this.removeAccount(index)
-        
-        Transaction.setDefaultValues()
+        // setDBListener((snapshot) => {
+        //     console.log(snapshot)
+        // })
+        User.fromDB()
     }
     update() {
         this.setState({})
@@ -74,7 +69,8 @@ class App extends React.Component { // <div style={{height: 20}}></div>
         return user 
     }
     setUser(user) {
-        this.setState({user: user})
+        // DataObject.userRoot = user.username + "/"
+        this.setState({user: user,hasDownloadedData: false})
     }
     addEntry(date="5/5/2020",label="default",amount=0,category="none",description="",account="") {
         this.addTransaction(new Transaction(date,label,amount,category,description,account))
@@ -84,18 +80,21 @@ class App extends React.Component { // <div style={{height: 20}}></div>
         this.setState({
             transactionList: this.state.transactionList
         })
+        Transaction.toDB()
     }
     removeEntry(index) {
         this.state.transactionList.splice(index,1)
         this.setState({
             transactionList: this.state.transactionList
         })
+        Transaction.toDB()
     }
     addCategory(category) {
         this.state.categoryList.push(new Category(category))
         this.setState({
             categoryList: this.state.categoryList
         })
+        Category.toDB()
     }
     removeCategory(index) {
         let category = this.state.categoryList.splice(index,1)[0]
@@ -103,12 +102,14 @@ class App extends React.Component { // <div style={{height: 20}}></div>
         this.setState({
             categoryList: this.state.categoryList
         })
+        Category.toDB()
     }
     addAccount(account) {
         this.state.accountList.push(new Account(account))
         this.setState({
             accountList: this.state.accountList
         })
+        Account.toDB()
     }
     removeAccount(index) {
         let account = this.state.accountList.splice(index,1)[0]
@@ -116,6 +117,7 @@ class App extends React.Component { // <div style={{height: 20}}></div>
         this.setState({
             accountList: this.state.accountList
         })
+        Account.toDB()
     }
     setSelectedTransaction(selectedTransaction) {
         this.setState({selectedTransaction: selectedTransaction})
@@ -124,6 +126,24 @@ class App extends React.Component { // <div style={{height: 20}}></div>
 
     }
     render() {
+        if(this.state.loggedIn && !this.state.hasDownloadedData) {
+            this.setState({hasDownloadedData: true})
+            // Account.toDB()
+            // Category.toDB()
+            // Transaction.toDB()
+            DataObject.userToDB()
+            Account.fromDB()
+            .then(()=>Category.fromDB())
+            .then(()=>Transaction.fromDB())
+            .then(()=>this.update())
+            // if(this.state.transactionList.length === 0) {
+            //     Transaction.add(new Transaction("2022-11-22","Lunch",-5,Category.getList()[1],"Chicken rice at uni",Account.getList()[1]))
+            //     Transaction.add(new Transaction("2022-11-23","Steam",-10,Category.getList()[5],"",Account.getList()[2]))
+            //     Transaction.add(new Transaction("2022-11-23","Free Money",20,Category.getList()[0],"",Account.getList()[1]))
+            //     Transaction.add(new Transaction("2022-11-24","Groceries",-40,Category.getList()[1],"A bunch of stuff for a few days",Account.getList()[1]))
+            //     Transaction.add(new Transaction("2022-11-24","Laundry Card",-50,Category.getList()[4],"Refilled card",Account.getList()[2]))        
+            // }
+        }
         return (
             <Router>
                 <NavBar 
