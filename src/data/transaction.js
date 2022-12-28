@@ -12,12 +12,12 @@ class Transaction extends DataObject {
     static remove = null 
     constructor(date="5/5/2020",label="default",amount=0,category="none",description="",account="") {
         super()
-        this.date = date 
-        this.label = label 
-        this.amount = amount 
-        this.category = category
-        this.description = description 
-        this.account = account 
+        this._date = date 
+        this._label = label 
+        this._amount = amount 
+        this._category = category
+        this._description = description 
+        this._account = account 
     }
     // static setDefaultValues() {
     //     this.add(new Transaction("2022-11-22","Lunch",-5,Category.getList()[1],"Chicken rice at uni",Account.getList()[1]))
@@ -26,21 +26,35 @@ class Transaction extends DataObject {
     //     this.add(new Transaction("2022-11-24","Groceries",-40,Category.getList()[1],"A bunch of stuff for a few days",Account.getList()[1]))
     //     this.add(new Transaction("2022-11-24","Laundry Card",-50,Category.getList()[4],"Refilled card",Account.getList()[2]))
     // }
-    toDB(index) {
+    get date() {return this._date}
+    get label() {return this._label}
+    get amount() {return this._amount}
+    get category() {return this._category}
+    get description() {return this._description}
+    get account() {return this._account}
+
+    set date(date) {this._date = date; this.toDB()}
+    set label(label) {this._label = label; this.toDB()}
+    set amount(amount) {this._amount = amount; this.toDB()}
+    set category(category) {this._category = category; this.toDB()}
+    set description(description) {this._description = description; this.toDB()}
+    set account(account) {this._account = account; this.toDB()}
+
+    toDB(index=-1) {
         super.toDB(index,Transaction.getList(),Transaction.key)
     }
     static toDB() {
         DataObject.toDB(Transaction.getList(),Transaction.key)
     }
     fromData(data) {
-        this.date = data["date"]
-        this.label = data["label"] 
-        this.amount = data["amount"] 
-        this.category = Category.findCategoryByID(data["category"]["id"])
-        this.description = data["description"] 
-        this.account = Account.findAccountByID(data["account"]["id"])
+        this._date = data["_date"]
+        this._label = data["_label"] 
+        this._amount = data["_amount"] 
+        this._category = Category.findCategoryByID(data["_category"]["_id"])
+        this._description = data["_description"] 
+        this._account = Account.findAccountByID(data["_account"]["_id"])
     }
-    // TODO: create setters and getters for transaction (also the other data classes)
+
     static fromDB() {
         return super.fromDB(Transaction.getList(),Transaction.key,() => new Transaction())
     }

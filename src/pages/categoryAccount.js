@@ -132,7 +132,7 @@ class CategoryRow extends React.Component {
                     }
                 </TD>
                 <TD>
-                    <BtnSecondary onClick={() => this.props.toggleEditCategory()}>E</BtnSecondary> {/*TODO: allow for editing text*/}
+                    <BtnSecondary onClick={() => this.props.toggleEditCategory()}>E</BtnSecondary> 
                     <BtnMain onClick={() => this.props.removeCategory()}>X</BtnMain>
                 </TD>
             </TR1>
@@ -179,7 +179,7 @@ class AccountRow extends React.Component {
                     }
                 </TD>
                 <TD>
-                    <BtnSecondary onClick={() => this.props.toggleEditAccount()}>E</BtnSecondary> {/*TODO: allow for editing text*/}
+                    <BtnSecondary onClick={() => this.props.toggleEditAccount()}>E</BtnSecondary> 
                     <BtnMain onClick={() => this.props.removeAccount()}>X</BtnMain>
                 </TD>
             </TR1>

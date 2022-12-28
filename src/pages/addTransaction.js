@@ -31,7 +31,6 @@ class AddTransaction extends React.Component {
         transaction.category = this.state.category
         transaction.account = this.state.account
         transaction.description = this.state.description
-        Transaction.toDB() // TODO: remove once automatic updating is added
         this.render()
     }
     onAdd() {

@@ -78,7 +78,7 @@ export default class DataObject {
         }
     }
 
-    static fromDB(instanceList,folderKey,emptyInstanceFunc) { // TODO: either add list appending here or do it within the classes
+    static fromDB(instanceList,folderKey,emptyInstanceFunc) { 
         return getFromDBPromise(`${DataObject.currentUsername()}/${folderKey}/`).then((snapshot) => {
             let data = snapshot.val() // extract the actual data
             instanceList.length = 0 // clear current instance list

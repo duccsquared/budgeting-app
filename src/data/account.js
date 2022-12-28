@@ -11,9 +11,9 @@ class Account extends DataObject {
     static remove = null 
     constructor(name) {
         super()
-        this.id = DataObject.genRandomID()
-        this.name = name
-        this.checked = true
+        this._id = DataObject.genRandomID()
+        this._name = name
+        this._checked = true
     }
     static findAccountByID(id) {
         let accountList = Account.getList()
@@ -25,16 +25,25 @@ class Account extends DataObject {
         }
         return Account.default 
     }
-    toDB(index) {
+
+    get id() {return this._id}
+    get name() {return this._name}
+    get checked() {return this._checked}
+
+    set id(id) {this._id = id; this.toDB()}
+    set name(name) {this._name = name; this.toDB()}
+    set checked(checked) {this._checked = checked; this.toDB()}
+
+    toDB(index=-1) {
         super.toDB(index,Account.getList(),Account.key)
     }
     static toDB() {
         DataObject.toDB(Account.getList(),Account.key)
     }
     fromData(data) {
-        this.id = data["id"]
-        this.name = data["name"]
-        this.checked = data["checked"]
+        this._id = data["_id"]
+        this._name = data["_name"]
+        this._checked = data["_checked"]
     }
     static fromDB() {
         return super.fromDB(Account.getList(),Account.key,() => new Account())

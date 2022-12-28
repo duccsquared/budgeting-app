@@ -10,9 +10,19 @@ class User extends DataObject {
         this.username = username
         this.password = password
     }
+    get username() {return this._username}
+    get password() {return this._password}
+
+    set username(username) {this._username = username; this.toDB()}
+    set password(password) {this._password = password; this.toDB()}
+
+    toDB(index=-1) {
+        // TODO: figure out how to do this
+    }
+    
     fromData(data) {
-        this.username = data["username"]
-        this.password = data["password"]
+        this._username = data["_username"]
+        this._password = data["_password"]
     }
     static fromDB() {
         return getFromDBPromise("/").then((snapshot) => {
