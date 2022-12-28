@@ -44,29 +44,48 @@ class TableDisplay extends React.Component {
                             setSelectedTransaction={(selectedTransaction) => props.setSelectedTransaction(selectedTransaction)}
                         />
                     </SubSection>
-                    <SubSection>
-                        <P>data type</P>
-                        <RadioBox name="dataType" value="net" onChange={()=>this.setState({dataType:"net"})}>net cashflow</RadioBox>
-                        <RadioBox name="dataType" value="in" onChange={()=>this.setState({dataType:"in"})}>inflow</RadioBox>
-                        <RadioBox name="dataType" value="out" onChange={()=>this.setState({dataType:"out"})}>outflow</RadioBox>
-                    </SubSection>
+                    <DataTypeSection onRadio={(dataType)=>this.setState({dataType:dataType})}/>
                     <AccountSection accountList={props.accountList} update={()=>props.update()}/>
-                    <SubSection>
-                        <P>date range</P>
-                        <div className="inline-flex">
-                            <P>start:</P>
-                            <div className="w-2"/>
-                            <InputDate onChange={(e) => this.setState({startDate: e.target.value})}/>
-                        </div>
-                        <div className="inline-flex">
-                            <P>end:</P>
-                            <div className="w-2"/>
-                            <InputDate onChange={(e) => this.setState({endDate: e.target.value})}/>
-                        </div>
-                    </SubSection>
+                    <DateRangeSection 
+                        setStartDate={(e) => this.setState({startDate: e.target.value})} 
+                        setEndDate={(e) => this.setState({endDate: e.target.value})}
+                    />
                     <CategorySection categoryList={props.categoryList} update={()=>props.update()}/>
                 </div>
             </MainSection>
+        )
+    }
+}
+
+class DataTypeSection extends React.Component {
+    render() {
+        return (
+            <SubSection>
+                <P>data type</P>
+                <RadioBox name="dataType" value="net" onChange={()=>this.props.onRadio("net")}>net cashflow</RadioBox>
+                <RadioBox name="dataType" value="in" onChange={()=>this.props.onRadio("in")}>inflow</RadioBox>
+                <RadioBox name="dataType" value="out" onChange={()=>this.props.onRadio("out")}>outflow</RadioBox>
+            </SubSection>
+        )
+    }
+}
+
+class DateRangeSection extends React.Component {
+    render() {
+        return (
+            <SubSection>
+                <P>date range</P>
+                <div className="inline-flex">
+                    <P>start:</P>
+                    <div className="w-2"/>
+                    <InputDate onChange={(e) => this.props.setStartDate(e)}/>
+                </div>
+                <div className="inline-flex">
+                    <P>end:</P>
+                    <div className="w-2"/>
+                    <InputDate onChange={(e) => this.props.setEndDate(e)}/>
+                </div>
+            </SubSection>
         )
     }
 }
