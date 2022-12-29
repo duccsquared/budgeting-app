@@ -49,7 +49,7 @@ export class CategorySection extends React.Component {
                 {categoryList.map((category) => <CheckBox value="" onChange={(e)=>{category.checked=!category.checked;this.props.update()}} {...this.state.isInitial?{checked: category.checked}:{}}>{category.name}</CheckBox>)}
             </SubSection>
         )
-        if(this.state.isInitial) {
+        if(this.state.isInitial && this.state.dataLoaded) {
             this.setState({isInitial: false})
         }
         return html
@@ -71,7 +71,7 @@ export class AccountSection extends React.Component {
                 {accountList.map((account) => <CheckBox value=""  onChange={(e)=>{account.checked=!account.checked;this.props.update()}} {...this.state.isInitial?{checked: account.checked}:{}}>{account.name}</CheckBox>)}
             </SubSection>
         )
-        if(this.state.isInitial) {
+        if(this.state.isInitial && this.state.dataLoaded) {
             this.setState({isInitial: false})
         }
         return html

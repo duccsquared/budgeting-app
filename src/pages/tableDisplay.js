@@ -45,12 +45,12 @@ class TableDisplay extends React.Component {
                         />
                     </SubSection>
                     <DataTypeSection onRadio={(dataType)=>this.setState({dataType:dataType})}/>
-                    <AccountSection accountList={props.accountList} update={()=>props.update()}/>
+                    <AccountSection accountList={props.accountList} update={()=>props.update()} dataLoaded={this.props.dataLoaded}/>
                     <DateRangeSection 
                         setStartDate={(e) => this.setState({startDate: e.target.value})} 
                         setEndDate={(e) => this.setState({endDate: e.target.value})}
                     />
-                    <CategorySection categoryList={props.categoryList} update={()=>props.update()}/>
+                    <CategorySection categoryList={props.categoryList} update={()=>props.update()} dataLoaded={this.props.dataLoaded}/>
                 </div>
             </MainSection>
         )

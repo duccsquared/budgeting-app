@@ -35,7 +35,8 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                 hasDownloadedData: false,
                 categoryList: [],
                 accountList: [],
-                selectedTransaction: null
+                selectedTransaction: null,
+                dataLoaded: false,
         }
 
         DataObject.update = () => this.update()
@@ -137,7 +138,7 @@ class App extends React.Component { // <div style={{height: 20}}></div>
             Account.fromDB()
             .then(()=>Category.fromDB())
             .then(()=>Transaction.fromDB())
-            .then(()=>this.update())
+            .then(()=>this.setState({dataLoaded: true}))
             // if(this.state.transactionList.length === 0) {
             //     Transaction.add(new Transaction("2022-11-22","Lunch",-5,Category.getList()[1],"Chicken rice at uni",Account.getList()[1]))
             //     Transaction.add(new Transaction("2022-11-23","Steam",-10,Category.getList()[5],"",Account.getList()[2]))
@@ -172,7 +173,8 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                         categoryList={this.state.categoryList}  
                         accountList={this.state.accountList}
                         setSelectedTransaction={(selectedTransaction) => this.setSelectedTransaction(selectedTransaction)}     
-                        update={()=>this.update()}> 
+                        update={()=>this.update()}
+                        dataLoaded={this.state.dataLoaded}> 
                     </TableDisplay>}></Route>
                     <Route path="/addTransaction" element={<AddTransaction 
                         transactionList={this.state.transactionList} 
