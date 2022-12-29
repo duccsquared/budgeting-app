@@ -160,7 +160,12 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                         setUser={(user)=>this.setUser(user)}
                     ></LoginPage>}></Route>
                     <Route path="/chartDisplay" element={<ChartDisplay></ChartDisplay>}></Route>
-                    <Route path="/graphDisplay" element={<GraphDisplay></GraphDisplay>}></Route>
+                    <Route path="/graphDisplay" element={<GraphDisplay
+                        transactionList={this.state.transactionList} 
+                        categoryList={this.state.categoryList}  
+                        accountList={this.state.accountList}
+                        update={()=>this.update()}>        
+                    </GraphDisplay>}></Route>
                     <Route path="/tableDisplay" element={<TableDisplay 
                         transactionList={this.state.transactionList} 
                         removeEntry={(index) => this.removeEntry(index)} 
