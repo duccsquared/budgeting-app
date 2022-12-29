@@ -21,9 +21,6 @@ export default function NavBar(props) {
                 <li className="nav-item">
                     <BtnMinim onClick={() => navigate("/tableDisplay")}>Data Table</BtnMinim>
                 </li>
-                <li className="nav-item">
-                    <BtnMinim onClick={() => navigate("/chartDisplay")}>Month Overview</BtnMinim>
-                </li>
                 <li className="nav-item mb-2 lg:mb-0">
                     <BtnMinim onClick={() =>{props.setSelectedTransaction(null); navigate("/addTransaction")}}>Add Entry</BtnMinim>
                 </li>

@@ -6,7 +6,6 @@ import {BtnMain, BtnSecondary, H1, H2, H3, P, Table, TR1, TR2, TH, TD, CheckBox,
 import NavBar from './navbar.js'
 import HomePage from './pages/home.js'
 import LoginPage from './pages/login.js';
-import ChartDisplay from './pages/chartDisplay.js'
 import GraphDisplay from './pages/graphDisplay.js'
 import TableDisplay from './pages/tableDisplay.js'
 import DataObject from './data/dataObject.js';
@@ -160,7 +159,6 @@ class App extends React.Component { // <div style={{height: 20}}></div>
                         addUser={(username,password)=>this.addUser(username,password)}
                         setUser={(user)=>this.setUser(user)}
                     ></LoginPage>}></Route>
-                    <Route path="/chartDisplay" element={<ChartDisplay></ChartDisplay>}></Route>
                     <Route path="/graphDisplay" element={<GraphDisplay
                         transactionList={this.state.transactionList} 
                         categoryList={this.state.categoryList}  
