@@ -182,7 +182,7 @@ export class CheckBox extends React.Component {
         let id = this.props.id || genRandomID()
         return (
             <div className={""+ (this.props.className || "")}>
-                <input className="" type="checkbox" value={this.props.value || this.props.children} id={id} checked={this.props.checked} onChange={this.props.onChange}></input>
+                <input className="" type="checkbox" value={this.props.value || this.props.children} id={id} checked={this.props.checked} onChange={this.props.onChange} onClick={this.props.onClick}></input>
                 <label className="p-1 text-sm font-mono" htmlFor={id}>
                     {this.props.children}
                 </label>

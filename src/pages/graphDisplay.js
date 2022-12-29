@@ -2,7 +2,7 @@
 Page that displays the budgeting data in the form of a graph
 */
 import React from 'react';
-import {MainSection, BtnMain, BtnSecondary, H1, H2, H3, P, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection, BtnMinim, InputDate} from '../components.js';
+import {MainSection, BtnMain, BtnSecondary, H1, H2, H3, P, Input, Table, THead, TBody, TR1, TR2, TH, TD, CheckBox, RadioBox, SubSection, BtnMinim, InputDate} from '../components.js';
 import DataTypeSection, { AccountSection, CategorySection, DateRangeSection } from '../dataOptionComponents.js';
 import Chart from 'chart.js/auto';
 import 'chartjs-adapter-date-fns'; // needed to get graph to work
@@ -14,11 +14,13 @@ class GraphDisplay extends React.Component {
             groupBy: "day",
             dataType: "net",
             startDate: null,
-            endDate: null        
+            endDate: null,
+            startValue: 0,
+            useStartValue: false        
         }
     }
     render() {
-
+        console.log(this.state.useStartValue)
         return (
             <MainSection>
             <H2>Graph</H2>
@@ -30,7 +32,15 @@ class GraphDisplay extends React.Component {
                         startDate = {this.state.startDate}
                         endDate = {this.state.endDate}
                         dataType = {this.state.dataType}
+                        startValue = {this.state.startValue}
+                        useStartValue = {this.state.useStartValue}
                     />
+                    <div className="inline-flex">
+                        <P>starting value:</P>
+                        <div className="w-2"/>
+                        <Input onChange={(e) => this.setState({startValue: e.target.value})}/>
+                        <CheckBox onChange={(e)=>{this.setState({useStartValue: !this.state.useStartValue})}}></CheckBox>
+                    </div>
                 </SubSection>
                 <DataTypeSection onRadio={(dataType)=>this.setState({dataType:dataType})}/>
                 <AccountSection accountList={this.props.accountList} update={()=>this.props.update()}/>
@@ -95,6 +105,13 @@ class DataGraph extends React.Component {
             let transaction = transactionList[index]
             let date = (new Date(transaction.date)).getTime()
             yList[((date - startDate)/(endDate - startDate))*(xList.length-1)] += parseInt(transaction.amount) 
+        }
+        if(this.props.useStartValue) {
+            let acc = parseInt(this.props.startValue)
+            for(let index in yList) {
+                acc += yList[index]
+                yList[index] = acc 
+            }
         }
         return [xList,yList]
     }
