@@ -14,9 +14,8 @@ class TableDisplay extends React.Component {
             endDate: null
         }
     }
-    render() {
-        let props = this.props
-        let transactionList = props.transactionList
+    getFilteredTransactionList() {
+        let transactionList = this.props.transactionList
         transactionList = transactionList.filter((transaction) => transaction.category.checked && transaction.account.checked)
         if(this.state.dataType==="in") {
             transactionList = transactionList.filter((transaction) => transaction.amount>=0)
@@ -32,6 +31,38 @@ class TableDisplay extends React.Component {
                 transactionList = transactionList.filter((transaction) => {let d = (new Date(transaction.date)).getTime(); return d >= startDate && d <= endDate})
             }
         }
+        return transactionList
+    }
+    exportAsCSV() {
+        let csvData = []
+        csvData.push("date,label,amount,category,description,account")
+        let transactionList = this.getFilteredTransactionList()
+        for(let index in transactionList) {
+            let transaction = transactionList[index]
+            let csvRow = []
+            csvRow.push(`"${transaction.date}"`)
+            csvRow.push(`"${transaction.label}"`)
+            csvRow.push(`"${transaction.amount}"`)
+            csvRow.push(`"${transaction.category.name}"`)
+            csvRow.push(`"${transaction.description}"`)
+            csvRow.push(`"${transaction.account.name}"`)
+            csvData.push(csvRow.join(","));
+        }
+        csvData = csvData.join('\n');
+
+        let csvFile = new Blob([csvData], {type: "text/csv"})
+        let tempLink = document.createElement('a');
+        tempLink.download = "export.csv"
+        let url = window.URL.createObjectURL(csvFile);
+        tempLink.href = url;
+        tempLink.style.display = "none";
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        document.body.removeChild(tempLink)
+    }
+    render() {
+        let props = this.props
+        let transactionList = this.getFilteredTransactionList()
         return (
             <MainSection>
                 <H2>Table Data</H2>
@@ -43,6 +74,7 @@ class TableDisplay extends React.Component {
                             removeEntry={(index) => props.removeEntry(index)}
                             setSelectedTransaction={(selectedTransaction) => props.setSelectedTransaction(selectedTransaction)}
                         />
+                        <BtnMain onClick={()=>this.exportAsCSV()}>export as csv</BtnMain>
                     </SubSection>
                     <DataTypeSection onRadio={(dataType)=>this.setState({dataType:dataType})}/>
                     <AccountSection accountList={props.accountList} update={()=>props.update()} dataLoaded={this.props.dataLoaded}/>
